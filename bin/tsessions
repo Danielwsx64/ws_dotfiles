@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+sockets = %x(ps ax -o args=).lines.grep(/tmux.*-L/).map{|l| l.chomp.match(/-L +([^ ]+)/)[1] }.uniq
+servers = [['default', nil]] + sockets.sort.map{|s| [s, s] }
+res = []
+servers.each do |srv, sock|
+    res << "#{srv}:"
+      arg = sock ? "-L #{sock}" : ""
+        %x(tmux #{arg} ls 2> /dev/null).each_line{|l| res << "- #{l.chomp}" }
+          res << ""
+end
+puts res.join("\n")

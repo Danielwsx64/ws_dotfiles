@@ -30,7 +30,7 @@ function set_os(){
 
   os_temp=''
 
-  if $1 = 'linux';then
+  if [ $1 = 'linux' ];then
     for file in `ls /etc/ | grep release`;do
       os_temp+=`cat /etc/$file`
     done

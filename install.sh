@@ -12,14 +12,14 @@ OS_NAME=''
 # List of files to link
 FILES_LINK=("aliases" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc" "bin" "vim" "git/*" "irb/*")
 
-
-
-
+# Names of packages
+VIM_PKG=''
+SILVERS_PKG=''
 
 
 
 function check_previus_install(){
-  if [ -d "$HOME/.$FILES_LINK" ];then
+  if [ -d "$HOME/.$WS_FOLDER" ];then
     return 0
   else
     return 1
@@ -30,7 +30,7 @@ function set_os(){
 
   os_temp=''
 
-  if [ $1 = 'linux' ];then
+  if [ "$1" = "linux" ];then
     for file in `ls /etc/ | grep release`;do
       os_temp+=`cat /etc/$file`
     done
@@ -58,7 +58,7 @@ function install_inicial_dependences(){
   $OS_INSTALL git
   $OS_INSTALL curl
 
-  if [ $OS_NAME = 'Ubuntu' ];then
+  if [ "$OS_NAME" = "Ubuntu" ];then
     $OS_ADDREPO ppa:pi-rho/dev
     $OS_INSTALL python-software-properties software-properties-common
     $OS_INSTALL dconf-cli
@@ -66,21 +66,14 @@ function install_inicial_dependences(){
   fi
 }
 
-function pkg_name_silver_search(){
+function set_pkg_names(){
 
-  if [ $OS_NAME = 'Ubuntu' ];then
-    return 'silversearcher-ag'
+  if [ "$OS_NAME" = "Ubuntu" ];then
+    SILVERS_PKG='silversearcher-ag'
+    VIM_PKG='vim-gnome'
   else
-    return 'the_silver_searcher'
-  fi
-}
-
-function pkg_name_vim(){
-
-  if [ $OS_NAME = 'Ubuntu' ];then
-    return 'vim-gnome'
-  else
-    return 'vim-enhanced'
+    SILVERS_PKG='the_silver_searcher'
+    VIM_PKG='vim-enhanced'
   fi
 }
 
@@ -88,10 +81,10 @@ function install_pkgs(){
   gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
   \curl -sSL https://get.rvm.io | bash -s stable
   $OS_UPDATE
-  $OS_INSTALL pkg_name_silver_search
+  $OS_INSTALL $SILVERS_PKG
   $OS_INSTALL zsh
   $OS_INSTALL tmux
-  $OS_INSTALL pkg_name_vim
+  $OS_INSTALL $VIM_PKG
   git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized"
   "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized/install.sh"
 }
@@ -134,7 +127,7 @@ function create_files_link(){
 
 function install_fonts(){
 
-  if [ $OS_NAME = "Ubuntu" ];then
+  if [ "$OS_NAME" = "Ubuntu" ];then
     mkdir -p "$HOME/.fonts" && cp "$HOME/.$WS_FOLDER/fonts/*" "$HOME/.fonts" && fc-cache -vf "$HOME/.fonts"
   fi
 }
@@ -169,34 +162,27 @@ function install_zsh_syntax_highlighting(){
 function install_dotfiles(){
   if check_previus_install; then
     already_installed
-    return 1
+    exit 1
   fi
 
-  clear
   echo ' - It´ll install primary dependences: '
   install_inicial_dependences
 
-  clear
   echo ' - Now it´ll clone Git repository'
   clone_repository
 
-  clear
   echo ' - It´ll create symbol links to files'
   create_files_link
 
-  clear
   echo ' - It´ll install the packages'
   install_pkgs
 
-  clear
   echo ' - It´ll install patched fonts for PowerLine/Lightline'
   install_fonts
 
-  clear
   echo ' - It´ll install vim plugins'
   install_vim_plugins
 
-  clear
   echo ' - It´ll install zsh highlighting'
   install_zsh_syntax_highlighting
 
@@ -207,11 +193,19 @@ function install_dotfiles(){
 
 
 set_os
-clear
+set_pkg_names
 
 case "$1" in
-  install|-i)
-    install_inicial_dependences
+  --install|-i|i)
+    install_dotfiles
+    ;;
+  --reinstall|-r|r)
+    if check_previus_install; then
+      sudo rm -rf "$HOME/.$WS_FOLDER"
+      sudo rm -rf "$HOME/.zsh-syntax-highlighting"
+      sudo rm -rf "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized"
+    fi
+    install_dotfiles
     ;;
   *)
     script_help

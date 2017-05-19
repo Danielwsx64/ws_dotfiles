@@ -159,6 +159,12 @@ function install_zsh_syntax_highlighting(){
   fi
 }
 
+function set_final_config(){
+  profile=$(gsettings get org.gnome.Terminal.ProfilesList default)
+  profile=${profile:1:-1}
+  gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile/" login-shell true
+}
+
 function install_dotfiles(){
   if check_previus_install; then
     already_installed
@@ -188,6 +194,9 @@ function install_dotfiles(){
 
   echo ' - It´ll change your default shell to zsh'
   chsh -s $(which zsh)
+
+  echo ' - It´ll make the last configs'
+  set_final_config
 
 }
 

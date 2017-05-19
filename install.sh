@@ -128,7 +128,7 @@ function create_files_link(){
 function install_fonts(){
 
   if [ "$OS_NAME" = "Ubuntu" ];then
-    mkdir -p "$HOME/.fonts" && cp "$HOME/.$WS_FOLDER/fonts/*" "$HOME/.fonts" && fc-cache -vf "$HOME/.fonts"
+    mkdir -p "$HOME/.fonts" && cp "$HOME/.$WS_FOLDER/fonts/"* "$HOME/.fonts" && fc-cache -vf "$HOME/.fonts"
   fi
 }
 

@@ -1,11 +1,6 @@
 # Based on Skwp's aliases
 # https://raw.githubusercontent.com/skwp/dotfiles/997d36bef991652dd436c076e57d8f00c49f4994/zsh/aliases.zsh
-ccdf=$HOME/.cc_dotfiles
-
-#tmux
-alias tnsl='tmux new -s Dws_LW'
-alias tasl='tmux a -t Dws_LW'
-alias trvm='tmux -L $(date +%s) new -s Dws'
+ccdf=$HOME/.wc_dotfiles
 
 # global
 alias -g ...='../..'
@@ -21,8 +16,6 @@ alias psr='ps aux | grep ruby'
 alias cdb='cd -'
 alias cls='clear;ls'
 alias clr='clear'
-alias ws='cd ~/WsLW'
-alias wd='cd ~/workspace'
 
 # Show human friendly numbers and colors
 alias df='df -h'

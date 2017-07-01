@@ -16,8 +16,6 @@ FILES_LINK=("aliases" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc" "bin" "vim" "gi
 VIM_PKG=''
 SILVERS_PKG=''
 
-
-
 function check_previus_install(){
   if [ -d "$HOME/.$WS_FOLDER" ];then
     return 0
@@ -27,7 +25,6 @@ function check_previus_install(){
 }
 
 function set_os(){
-
   os_temp=''
 
   if [ "$1" = "linux" ];then
@@ -67,7 +64,6 @@ function install_inicial_dependences(){
 }
 
 function set_pkg_names(){
-
   if [ "$OS_NAME" = "Ubuntu" ];then
     SILVERS_PKG='silversearcher-ag'
     VIM_PKG='vim-gnome'
@@ -90,7 +86,11 @@ function install_pkgs(){
 }
 
 function clone_repository(){
-  git clone --depth=1 https://github.com/Danielwsx64/ws_dotfiles.git "$HOME/.$WS_FOLDER"
+  if [ -z "$1" ];then
+    git clone --depth=1 https://github.com/Danielwsx64/ws_dotfiles.git "$HOME/.$WS_FOLDER"
+  else
+    git clone --depth=1 -b "$1" https://github.com/Danielwsx64/ws_dotfiles.git "$HOME/.$WS_FOLDER"
+  fi
 }
 
 function backup_file(){
@@ -106,7 +106,6 @@ function create_symbol_link(){
 }
 
 function create_files_link(){
-
   for file in "${FILES_LINK[@]}"; do
 
     file_source="$HOME/.$WS_FOLDER/$file"
@@ -126,7 +125,6 @@ function create_files_link(){
 }
 
 function install_fonts(){
-
   if [ "$OS_NAME" = "Ubuntu" ];then
     mkdir -p "$HOME/.fonts" && cp "$HOME/.$WS_FOLDER/fonts/"* "$HOME/.fonts" && fc-cache -vf "$HOME/.fonts"
   fi
@@ -137,23 +135,14 @@ function install_vim_plugins(){
 }
 
 function already_installed(){
-  echo ''
-  echo 'You´ve already installed the ws_dotfiles.'
-  echo 'To reinstall use the command:'
-  echo " $0 reinstall"
-}
-
-function script_help(){
-  echo ''
-  echo " --- Dotfiles WS ---"
-  echo ''
-  echo "To install run:"
-  echo " $0 install"
-  echo ''
+  echo
+  echo 'WS Dotfiles is already installed!'
+  echo
+  echo 'To reinstall:'
+  echo " $0 --reinstall"
 }
 
 function install_zsh_syntax_highlighting(){
-
   if [ ! -d "$HOME/.zsh-syntax-highlighting" ];then
     git clone --depth=1 git://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting"
   fi
@@ -175,7 +164,7 @@ function install_dotfiles(){
   install_inicial_dependences
 
   echo ' - Now it´ll clone Git repository'
-  clone_repository
+  clone_repository $1
 
   echo ' - It´ll create symbol links to files'
   create_files_link
@@ -197,24 +186,31 @@ function install_dotfiles(){
 
   echo ' - It´ll make the last configs'
   set_final_config
-
 }
 
+function script_help(){
+  echo
+  echo "Uso: $0 OPTIONS"
+  echo
+  echo 'Options:'
+  echo ' -i, --install       Install WS Dotfiles. You can set a especific branch ex: install -i branch_name'
+  echo ' -r, --reinstall     Reinstall WS Dotfiles. You can set a especific branch ex: install -r branch_name'
+}
 
 set_os
 set_pkg_names
 
 case "$1" in
-  --install|-i|i)
-    install_dotfiles
+  --install|-i)
+    install_dotfiles $2
     ;;
-  --reinstall|-r|r)
+  --reinstall|-r)
     if check_previus_install; then
       sudo rm -rf "$HOME/.$WS_FOLDER"
       sudo rm -rf "$HOME/.zsh-syntax-highlighting"
       sudo rm -rf "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized"
     fi
-    install_dotfiles
+    install_dotfiles $2
     ;;
   *)
     script_help

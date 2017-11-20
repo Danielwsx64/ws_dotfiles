@@ -1,0 +1,17 @@
+# Based on Skwp's aliases
+# https://raw.githubusercontent.com/skwp/dotfiles/997d36bef991652dd436c076e57d8f00c49f4994/zsh/aliases.zsh
+wsdf=$HOME/.ws_dotfiles
+
+#Daniel
+alias ws='cd ~/WsLW'
+alias wd='cd ~/workspace'
+
+alias tnsl='tmux new -s Dws_LW'
+alias tasl='tmux a -t Dws_LW'
+alias trvm='tmux -L $(date +%s) new -s Dws'
+
+alias hvim='vim `pwd`'
+
+alias laravel="docker run --rm -it -p 8000:8000 -v $(pwd):/workspace -w /workspace danielws/laravel bash"
+
+alias ruboparse="git diff --name-only master | grep -v cassette | grep -v .yml | grep -v .js | grep -v READM | grep -v seed| grep -v Gemfi | grep -v locaweb/devops | grep -v spec/spec_helper | grep -v spec/support | xargs rubocop"

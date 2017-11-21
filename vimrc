@@ -77,14 +77,23 @@ if executable('ag')
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-  let g:ctrlp_user_command =
-      \ 'ag %s --files-with-matches -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
+  " let g:ctrlp_user_command =
+  "     \ 'ag %s --files-with-matches -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
+
+  " Define composer.json as anchor to root path on laravel projects
+  " set ag to ignore /vendor folder in laravel projects
+  let g:ctrlp_user_command = {
+        \ 'types': {
+        \   1: ['composer.json', 'ag %s -l --hidden -g "" --ignore ".git" --ignore "vendor/" | egrep -v "\.(git|hg|svn)/|.log$"'],
+        \ },
+        \ 'fallback': 'ag %s -l --hidden -g "" --ignore ".git" | egrep -v "\.(git|hg|svn)/|.log$"'
+      \ }
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
 " Default to filename searches
-let g:ctrlp_by_filename = 1
+" let g:ctrlp_by_filename = 1
 
 " Make it obvious where 80 characters is
 set textwidth=80
@@ -116,7 +125,7 @@ set splitright
 let g:syntastic_check_on_open=1
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 let g:syntastic_eruby_ruby_quiet_messages =
-    \ {"regex": "possibly useless use of a variable in void context"}
+      \ {"regex": "possibly useless use of a variable in void context"}
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.

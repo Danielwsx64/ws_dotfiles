@@ -99,3 +99,13 @@ map <Leader>ct :!ctags -R .<CR>
 "grep the current word using K (mnemonic Kurrent)
 nnoremap <silent> K :Ag <cword><CR>
 vnoremap <silent> K y:Ag <C-R>"<CR>
+
+"git mapping
+nnoremap <Leader>gs :VtrSendCommandToRunner git status<CR>
+nnoremap <Leader>gd :VtrSendCommandToRunner git diff<CR>
+nnoremap <Leader>ga :VtrSendCommandToRunner git add .<CR>
+nnoremap <Leader>gfd :VtrSendCommandToRunner git diff 
+nnoremap <Leader>gfa :VtrSendCommandToRunner git add 
+
+"send command to tmux
+nnoremap <Leader>tt :VtrSendCommandToRunner 

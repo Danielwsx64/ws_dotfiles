@@ -216,7 +216,6 @@ function script_help(){
 }
 
 set_os
-set_pkg_names
 
 case "$1" in
 

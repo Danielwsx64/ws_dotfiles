@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Prerequisities to install dotfiles
+PRERESUISITIES_PACKS=("git" "curl")
+CUSTOM_PREREQUISITIES=("install_dconf")
+
+# Packages to install
+UBUNTU_PACKS=("silversearcher-ag" "vim-gnome" "zsh" "tmux")
+FEDORA_PACKS=("the_silver_searcher" "vim-enhanced")
+
+# Custom apps to Install (without package management)
+CUSTOM_APPS=("install_rvm" "install_solarized")
+
+# List of files to link
+FILES_LINK=("aliases" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc" "bin" "vim" "git/*" "irb/*")
+
 # Dotfiles folder name
 WS_FOLDER='ws_dotfiles'
 
@@ -9,12 +23,26 @@ OS_ADDREPO=''
 OS_UPDATE=''
 OS_NAME=''
 
-# List of files to link
-FILES_LINK=("aliases" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc" "bin" "vim" "git/*" "irb/*")
 
-# Names of packages
-VIM_PKG=''
-SILVERS_PKG=''
+function install_rvm(){
+  gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+  \curl -sSL https://get.rvm.io | bash -s stable
+  $OS_UPDATE
+}
+
+function install_solarized(){
+  git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized"
+  "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized/install.sh"
+}
+
+function install_dconf(){
+  if [ "$OS_NAME" = "Ubuntu" ];then
+    $OS_ADDREPO ppa:pi-rho/dev
+    $OS_INSTALL python-software-properties software-properties-common
+    $OS_INSTALL dconf-cli
+    $OS_UPDATE
+  fi
+}
 
 function check_previus_install(){
   if [ -d "$HOME/.$WS_FOLDER" ];then
@@ -52,37 +80,31 @@ function set_os(){
 
 function install_inicial_dependences(){
   $OS_UPDATE
-  $OS_INSTALL git
-  $OS_INSTALL curl
 
-  if [ "$OS_NAME" = "Ubuntu" ];then
-    $OS_ADDREPO ppa:pi-rho/dev
-    $OS_INSTALL python-software-properties software-properties-common
-    $OS_INSTALL dconf-cli
-    $OS_UPDATE
-  fi
+  for install_custom in "${CUSTOM_PREREQUISITIES[@]}"; do
+    $install_custom
+  done
+
+  for pkg in "${PRERESUISITIES_PACKS[@]}"; do
+    $OS_INSTALL $pkg
+  done
 }
 
-function set_pkg_names(){
-  if [ "$OS_NAME" = "Ubuntu" ];then
-    SILVERS_PKG='silversearcher-ag'
-    VIM_PKG='vim-gnome'
-  else
-    SILVERS_PKG='the_silver_searcher'
-    VIM_PKG='vim-enhanced'
-  fi
-}
 
 function install_pkgs(){
-  gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-  \curl -sSL https://get.rvm.io | bash -s stable
-  $OS_UPDATE
-  $OS_INSTALL $SILVERS_PKG
-  $OS_INSTALL zsh
-  $OS_INSTALL tmux
-  $OS_INSTALL $VIM_PKG
-  git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized"
-  "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized/install.sh"
+  for install_custom in "${CUSTOM_APPS[@]}"; do
+    $install_custom
+  done
+
+  if [ "$OS_NAME" = "Ubuntu" ];then
+    for pkg in "${UBUNTU_PACKS[@]}"; do
+      $OS_INSTALL $pkg
+    done
+  else
+    for pkg in "${FEDORA_PACKS[@]}"; do
+      $OS_INSTALL $pkg
+    done
+  fi
 }
 
 function clone_repository(){

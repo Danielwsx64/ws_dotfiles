@@ -1,15 +1,19 @@
 #!/bin/bash
 
-# Prerequisities to install dotfiles
-PRERESUISITIES_PACKS=("git" "curl")
-CUSTOM_PREREQUISITIES=("install_dconf")
+# Custom repositories
+CUSTOM_REPOSITORIES=("ppa:pi-rho/dev")
+
+# Custom prerequisites
+CUSTOM_PREREQUISITIES=()
 
 # Packages to install
-UBUNTU_PACKS=("silversearcher-ag" "vim-gnome" "zsh" "tmux")
+COMMONS_PACKS=("curl" "apt-transport-https" "ca-certificates" "software-properties-common" "git")
+
+UBUNTU_PACKS=("dconf-cli" "silversearcher-ag" "vim-gnome" "zsh" "tmux")
 FEDORA_PACKS=("the_silver_searcher" "vim-enhanced")
 
-# Custom apps to Install (without package management)
-CUSTOM_APPS=("install_rvm" "install_solarized")
+# Custom apps to Install (without package management or custom configs)
+CUSTOM_APPS=("install_rvm" "install_solarized" "install_zsh_syntax_highlighting" "install_docker")
 
 # List of files to link
 FILES_LINK=("aliases" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc" "bin" "vim" "git/*" "irb/*")
@@ -24,10 +28,20 @@ OS_UPDATE=''
 OS_NAME=''
 
 
+
+# ---------------------------------------
+# Custom install functions
+# ---------------------------------------
+
+function install_zsh_syntax_highlighting(){
+  if [ ! -d "$HOME/.zsh-syntax-highlighting" ];then
+    git clone --depth=1 git://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting"
+  fi
+}
+
 function install_rvm(){
   gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
   \curl -sSL https://get.rvm.io | bash -s stable
-  $OS_UPDATE
 }
 
 function install_solarized(){
@@ -35,14 +49,12 @@ function install_solarized(){
   "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized/install.sh"
 }
 
-function install_dconf(){
-  if [ "$OS_NAME" = "Ubuntu" ];then
-    $OS_ADDREPO ppa:pi-rho/dev
-    $OS_INSTALL python-software-properties software-properties-common
-    $OS_INSTALL dconf-cli
-    $OS_UPDATE
-  fi
+function install_docker(){
+  curl -fsSL test.docker.com | sh
+  sudo usermod -aG docker $USER
 }
+
+# ------------ End of custom install functions
 
 function check_previus_install(){
   if [ -d "$HOME/.$WS_FOLDER" ];then
@@ -78,24 +90,25 @@ function set_os(){
   fi
 }
 
-function install_inicial_dependences(){
-  $OS_UPDATE
+function install_pkgs(){
 
+  echo ' ... install custom prerequisities'
   for install_custom in "${CUSTOM_PREREQUISITIES[@]}"; do
     $install_custom
   done
 
-  for pkg in "${PRERESUISITIES_PACKS[@]}"; do
+  echo ' ... add custom reositories'
+  for repo in "${CUSTOM_REPOSITORIES[@]}"; do
+    $OS_ADDREPO $repo
+  done
+  $OS_UPDATE
+
+  echo ' ... install commons packs'
+  for pkg in "${COMMONS_PACKS[@]}"; do
     $OS_INSTALL $pkg
   done
-}
 
-
-function install_pkgs(){
-  for install_custom in "${CUSTOM_APPS[@]}"; do
-    $install_custom
-  done
-
+  echo ' ... install specific OS packs'
   if [ "$OS_NAME" = "Ubuntu" ];then
     for pkg in "${UBUNTU_PACKS[@]}"; do
       $OS_INSTALL $pkg
@@ -105,6 +118,13 @@ function install_pkgs(){
       $OS_INSTALL $pkg
     done
   fi
+}
+
+function install_custom_pkgs(){
+  for install_custom in "${CUSTOM_APPS[@]}"; do
+    echo " ... Custom pkg: $install_custom"
+    $install_custom
+  done
 }
 
 function clone_repository(){
@@ -160,12 +180,6 @@ function already_installed(){
   echo " $0 --reinstall"
 }
 
-function install_zsh_syntax_highlighting(){
-  if [ ! -d "$HOME/.zsh-syntax-highlighting" ];then
-    git clone --depth=1 git://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting"
-  fi
-}
-
 function set_final_config(){
   profile=$(gsettings get org.gnome.Terminal.ProfilesList default)
   profile=${profile:1:-1}
@@ -198,6 +212,9 @@ function install_dotfiles(){
 
   echo -e ' \n\n---- It´ll install zsh highlighting'
   install_zsh_syntax_highlighting
+
+  echo -e ' \n\n---- It´ll install custom packages'
+  install_custom_pkgs
 
   echo -e ' \n\n---- It´ll change your default shell to zsh'
   chsh -s $(which zsh)

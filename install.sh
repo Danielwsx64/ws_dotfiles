@@ -13,7 +13,7 @@ UBUNTU_PACKS=("dconf-cli" "silversearcher-ag" "vim-gnome" "zsh" "tmux")
 FEDORA_PACKS=("the_silver_searcher" "vim-enhanced")
 
 # Custom apps to Install (without package management or custom configs)
-CUSTOM_APPS=("install_rvm" "install_solarized" "install_zsh_syntax_highlighting" "install_docker")
+CUSTOM_APPS=("install_rvm" "install_solarized" "install_zsh_syntax_highlighting" "install_docker" "install_docker_compose")
 
 # List of files to link
 FILES_LINK=("aliases" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc" "bin" "vim" "git/*" "irb/*")
@@ -52,6 +52,11 @@ function install_solarized(){
 function install_docker(){
   curl -fsSL test.docker.com | sh
   sudo usermod -aG docker $USER
+}
+
+function install_docker_compose(){
+  sudo curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+  sudo chmod +x /usr/local/bin/docker-compose
 }
 
 # ------------ End of custom install functions

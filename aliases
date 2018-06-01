@@ -1,6 +1,6 @@
 # Based on Skwp's aliases
 # https://raw.githubusercontent.com/skwp/dotfiles/997d36bef991652dd436c076e57d8f00c49f4994/zsh/aliases.zsh
-ccdf=$HOME/.wc_dotfiles
+wsdf=$HOME/.wc_dotfiles
 
 # global
 alias -g ...='../..'
@@ -36,8 +36,8 @@ alias lsg='ll | grep'
 alias lag='la | grep'
 
 # Alias Editing
-alias ae='vim $ccdf/aliases' #alias edit
-alias ar='source $ccdf/aliases'  #alias reload
+alias ae='vim $wsdf/aliases' #alias edit
+alias ar='source $wsdf/aliases'  #alias reload
 
 # vim using
 mvim --version > /dev/null 2>&1

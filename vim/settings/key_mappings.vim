@@ -56,8 +56,10 @@ nnoremap <Leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <Leader>= :wincmd =<cr>
 
 "" Tabs
-nnoremap <S-Tab> gt
 nnoremap <silent> <S-t> :tabnew<CR>
+nnoremap <S-Tab> gt
+nnoremap L gt
+nnoremap H gT
 
 " Rubocop
 map <Leader>ru :call VtrSendCommand('rubocop')<CR>
@@ -109,3 +111,14 @@ nnoremap <Leader>gfa :VtrSendCommandToRunner git add
 
 "send command to tmux
 nnoremap <Leader>tt :VtrSendCommandToRunner 
+
+" multiple cursor mapping
+let g:multi_cursor_use_default_mapping = 0
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<C-m>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<C-m>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-b>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'

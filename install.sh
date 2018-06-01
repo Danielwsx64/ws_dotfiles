@@ -86,11 +86,7 @@ function install_pkgs(){
 }
 
 function clone_repository(){
-  if [ -z "$1" ];then
-    git clone --depth=1 https://github.com/Danielwsx64/ws_dotfiles.git "$HOME/.$WS_FOLDER"
-  else
-    git clone --depth=1 -b "$1" https://github.com/Danielwsx64/ws_dotfiles.git "$HOME/.$WS_FOLDER"
-  fi
+  git clone https://github.com/Danielwsx64/ws_dotfiles.git "$HOME/.$WS_FOLDER"
 }
 
 function backup_file(){
@@ -160,31 +156,31 @@ function install_dotfiles(){
     exit 1
   fi
 
-  echo ' - It´ll install primary dependences: '
+  echo -e ' \n\n---- It´ll install primary dependences: '
   install_inicial_dependences
 
-  echo ' - Now it´ll clone Git repository'
-  clone_repository $1
+  echo -e ' \n\n---- Now it´ll clone Git repository'
+  clone_repository
 
-  echo ' - It´ll create symbol links to files'
+  echo -e ' \n\n---- It´ll create symbol links to files'
   create_files_link
 
-  echo ' - It´ll install the packages'
+  echo -e ' \n\n---- It´ll install the packages'
   install_pkgs
 
-  echo ' - It´ll install patched fonts for PowerLine/Lightline'
+  echo -e ' \n\n---- It´ll install patched fonts for PowerLine/Lightline'
   install_fonts
 
-  echo ' - It´ll install vim plugins'
+  echo -e ' \n\n---- It´ll install vim plugins'
   install_vim_plugins
 
-  echo ' - It´ll install zsh highlighting'
+  echo -e ' \n\n---- It´ll install zsh highlighting'
   install_zsh_syntax_highlighting
 
-  echo ' - It´ll change your default shell to zsh'
+  echo -e ' \n\n---- It´ll change your default shell to zsh'
   chsh -s $(which zsh)
 
-  echo ' - It´ll make the last configs'
+  echo -e ' \n\n---- It´ll make the last configs'
   set_final_config
 }
 
@@ -193,25 +189,33 @@ function script_help(){
   echo "Uso: $0 OPTIONS"
   echo
   echo 'Options:'
-  echo ' -i, --install       Install WS Dotfiles. You can set a especific branch ex: install -i branch_name'
-  echo ' -r, --reinstall     Reinstall WS Dotfiles. You can set a especific branch ex: install -r branch_name'
+  echo ' -i, --install       Install WS Dotfiles.'
+  echo ' -r, --reinstall     Reinstall WS Dotfiles.'
 }
 
 set_os
 set_pkg_names
 
 case "$1" in
+
   --install|-i)
-    install_dotfiles $2
+    install_dotfiles
     ;;
+
   --reinstall|-r)
     if check_previus_install; then
       sudo rm -rf "$HOME/.$WS_FOLDER"
       sudo rm -rf "$HOME/.zsh-syntax-highlighting"
       sudo rm -rf "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized"
     fi
-    install_dotfiles $2
+
+    install_dotfiles
     ;;
+
+  --test)
+    echo -e ' \n\n- Testing it\n\n'
+    ;;
+
   *)
     script_help
     ;;

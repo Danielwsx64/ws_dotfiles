@@ -3,16 +3,16 @@
 # Custom repositories
 CUSTOM_REPOSITORIES=("ppa:pi-rho/dev")
 
-# Custom prerequisites
-CUSTOM_DEPENDENCES=()
+# Dependences Packs
+DEPENDENCES_PACKS=("curl" "git")
 
 # Packages to install
-DEB_PACKS=( "curl" "apt-transport-https" "ca-certificates"
-                "software-properties-common" "git" "dconf-cli"
-                "silversearcher-ag" "vim-gnome" "zsh" "tmux" "nodejs")
+DEB_PACKS=( "apt-transport-https" "ca-certificates" "software-properties-common"
+        "dconf-cli" "silversearcher-ag" "vim-gnome" "zsh" "tmux" "nodejs" "npm")
 
 # Custom apps to Install (without package management or custom configs)
-CUSTOM_APPS=("install_rvm" "install_solarized" "install_zsh_syntax_highlighting" "install_docker" "install_docker_compose")
+CUSTOM_APPS=("install_rvm" "install_solarized" "install_zsh_syntax_highlighting"
+             "install_docker" "install_docker_compose" "install_yarn")
 
 # List of files to link
 FILES_LINK=("aliases" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc" "bin" "vim" "git/*" "irb/*")
@@ -51,6 +51,17 @@ function install_docker_compose(){
   sudo chmod +x /usr/local/bin/docker-compose
 }
 
+function install_yarn(){
+  configure_npm
+  npm install -g yarn
+}
+
+function configure_npm(){
+  mkdir ~/.npm-global
+  npm config set prefix '~/.npm-global'
+  echo 'export PATH=$PATH:$HOME/.npm-global/bin' >> ~/.zshrc
+  source ~/.profile
+}
 # ------------ End of custom install functions
 
 function check_previus_install(){
@@ -59,6 +70,13 @@ function check_previus_install(){
   else
     return 1
   fi
+}
+
+function install_dependences(){
+  echo -e '\n\n ... install dependences packs'
+  for pkg in "${DEPENDENCES_PACKS[@]}"; do
+    sudo apt-get install -y $pkg
+  done
 }
 
 function install_pkgs(){
@@ -151,11 +169,14 @@ function install_dotfiles(){
     exit 1
   fi
 
-  echo -e ' \n\n---- It´ll install the packages'
-  install_pkgs
+  echo -e ' \n\n---- Now it´ll clone Git repository'
+  install_dependences
 
   echo -e ' \n\n---- Now it´ll clone Git repository'
   clone_repository
+
+  echo -e ' \n\n---- It´ll install the packages'
+  install_pkgs
 
   echo -e ' \n\n---- It´ll create symbol links to files'
   create_files_link
@@ -182,8 +203,6 @@ function script_help(){
   echo ' -r, --reinstall     Reinstall WS Dotfiles.'
 }
 
-set_os
-
 case "$1" in
 
   --install|-i)
@@ -200,7 +219,7 @@ case "$1" in
     ;;
 
   --test)
-    echo -e ' \n\n- Testing it\n\n'
+    install_yarn
     ;;
 
   *)

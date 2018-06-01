@@ -4,13 +4,12 @@
 CUSTOM_REPOSITORIES=("ppa:pi-rho/dev")
 
 # Custom prerequisites
-CUSTOM_PREREQUISITIES=()
+CUSTOM_DEPENDENCES=()
 
 # Packages to install
-COMMONS_PACKS=("curl" "apt-transport-https" "ca-certificates" "software-properties-common" "git")
-
-UBUNTU_PACKS=("dconf-cli" "silversearcher-ag" "vim-gnome" "zsh" "tmux")
-FEDORA_PACKS=("the_silver_searcher" "vim-enhanced")
+DEB_PACKS=( "curl" "apt-transport-https" "ca-certificates"
+                "software-properties-common" "git" "dconf-cli"
+                "silversearcher-ag" "vim-gnome" "zsh" "tmux" "nodejs")
 
 # Custom apps to Install (without package management or custom configs)
 CUSTOM_APPS=("install_rvm" "install_solarized" "install_zsh_syntax_highlighting" "install_docker" "install_docker_compose")
@@ -20,14 +19,6 @@ FILES_LINK=("aliases" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc" "bin" "vim" "gi
 
 # Dotfiles folder name
 WS_FOLDER='ws_dotfiles'
-
-#OS Install packages commands
-OS_INSTALL=''
-OS_ADDREPO=''
-OS_UPDATE=''
-OS_NAME=''
-
-
 
 # ---------------------------------------
 # Custom install functions
@@ -45,6 +36,7 @@ function install_rvm(){
 }
 
 function install_solarized(){
+  mkdir -p "$HOME/.$WS_FOLDER"
   git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized"
   "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized/install.sh"
 }
@@ -69,65 +61,27 @@ function check_previus_install(){
   fi
 }
 
-function set_os(){
-  os_temp=''
-
-  if [ "$1" = "linux" ];then
-    for file in `ls /etc/ | grep release`;do
-      os_temp+=`cat /etc/$file`
-    done
-  else
-    os_temp=`uname -a`
-  fi
-
-  if [[ $os_temp =~ ^.*Ubuntu.*$  ]];then
-    OS_NAME='Ubuntu'
-    OS_UPDATE='sudo apt-get update'
-    OS_INSTALL='sudo apt-get install -y'
-    OS_ADDREPO='sudo add-apt-repository -y'
-  elif [[ $os_temp =~ ^.*Fedora.*$  ]];then
-    OS_NAME='Fedora'
-    OS_UPDATE='echo "no update"'
-    OS_INSTALL='sudo yum -y install'
-    OS_ADDREPO='sudo add-apt-repository -y'
-  elif [[ $os_temp =~ ^.*Linux.*$  ]];then
-    set_os 'linux'
-  fi
-}
-
 function install_pkgs(){
 
-  echo ' ... install custom prerequisities'
-  for install_custom in "${CUSTOM_PREREQUISITIES[@]}"; do
+  echo -e '\n\n ... install custom prerequisities'
+  for install_custom in "${CUSTOM_DEPENDENCES[@]}"; do
     $install_custom
   done
 
-  echo ' ... add custom reositories'
+  echo -e '\n\n ... add custom reositories'
   for repo in "${CUSTOM_REPOSITORIES[@]}"; do
-    $OS_ADDREPO $repo
-  done
-  $OS_UPDATE
-
-  echo ' ... install commons packs'
-  for pkg in "${COMMONS_PACKS[@]}"; do
-    $OS_INSTALL $pkg
+    sudo add-apt-repository -y $repo
   done
 
-  echo ' ... install specific OS packs'
-  if [ "$OS_NAME" = "Ubuntu" ];then
-    for pkg in "${UBUNTU_PACKS[@]}"; do
-      $OS_INSTALL $pkg
-    done
-  else
-    for pkg in "${FEDORA_PACKS[@]}"; do
-      $OS_INSTALL $pkg
-    done
-  fi
-}
+  sudo apt-get update
 
-function install_custom_pkgs(){
+  echo -e '\n\n ... install commons packs'
+  for pkg in "${DEB_PACKS[@]}"; do
+    sudo apt-get install -y $pkg
+  done
+
+  echo -e '\n\n ... install custom apps'
   for install_custom in "${CUSTOM_APPS[@]}"; do
-    echo " ... Custom pkg: $install_custom"
     $install_custom
   done
 }
@@ -197,8 +151,8 @@ function install_dotfiles(){
     exit 1
   fi
 
-  echo -e ' \n\n---- It´ll install primary dependences: '
-  install_inicial_dependences
+  echo -e ' \n\n---- It´ll install the packages'
+  install_pkgs
 
   echo -e ' \n\n---- Now it´ll clone Git repository'
   clone_repository
@@ -206,20 +160,11 @@ function install_dotfiles(){
   echo -e ' \n\n---- It´ll create symbol links to files'
   create_files_link
 
-  echo -e ' \n\n---- It´ll install the packages'
-  install_pkgs
-
   echo -e ' \n\n---- It´ll install patched fonts for PowerLine/Lightline'
   install_fonts
 
   echo -e ' \n\n---- It´ll install vim plugins'
   install_vim_plugins
-
-  echo -e ' \n\n---- It´ll install zsh highlighting'
-  install_zsh_syntax_highlighting
-
-  echo -e ' \n\n---- It´ll install custom packages'
-  install_custom_pkgs
 
   echo -e ' \n\n---- It´ll change your default shell to zsh'
   chsh -s $(which zsh)
@@ -249,7 +194,6 @@ case "$1" in
     if check_previus_install; then
       sudo rm -rf "$HOME/.$WS_FOLDER"
       sudo rm -rf "$HOME/.zsh-syntax-highlighting"
-      sudo rm -rf "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized"
     fi
 
     install_dotfiles

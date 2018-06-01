@@ -189,8 +189,8 @@ function script_help(){
   echo "Uso: $0 OPTIONS"
   echo
   echo 'Options:'
-  echo ' -i, --install       Install WS Dotfiles. You can set a especific branch ex: install -i branch_name'
-  echo ' -r, --reinstall     Reinstall WS Dotfiles. You can set a especific branch ex: install -r branch_name'
+  echo ' -i, --install       Install WS Dotfiles.'
+  echo ' -r, --reinstall     Reinstall WS Dotfiles.'
 }
 
 set_os

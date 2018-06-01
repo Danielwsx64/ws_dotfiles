@@ -1,22 +1,24 @@
 " Leader
 let mapleader = " "
 
-set backspace=2   " Backspace deletes like most programs in insert mode
+set backspace=2       " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-set history=1000  " a lot of history
-set ruler         " show the cursor position all the time
+set noswapfile        " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set history=1000      " a lot of history
+set ruler             " show the cursor position all the time
 set hlsearch
-set showcmd       " display incomplete commands
-set incsearch     " do incremental searching
-set laststatus=2  " Always display the status line
-set autowrite     " Automatically :write before running commands
-set ignorecase    " Ignore case when searching...
-set smartcase     " ...unless we type a capital
-set showmode      "Show current mode down the bottom
-"set visualbell    " No noise
-set nowrap        "Don't wrap lines
+set showcmd           " display incomplete commands
+set incsearch         " do incremental searching
+set laststatus=2      " Always display the status line
+set autowrite         " Automatically :write before running commands
+set ignorecase        " Ignore case when searching...
+set smartcase         " ...unless we type a capital
+set showmode          " Show current mode down the bottom
+                      " set visualbell                                                                   " No noise
+set nowrap            " Don't wrap lines
+set foldmethod=syntax " Turn on folding
+set nofoldenable      " Open file with all fold opened
 
 syntax on
 
@@ -176,6 +178,13 @@ let g:blade_custom_directives_pairs = {
       \   'cache': 'endcache',
       \ }
 
+" Define vim-ident-guides schema color
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black   ctermbg=10
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=gray ctermbg=0
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")

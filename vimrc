@@ -84,9 +84,11 @@ if executable('ag')
 
   " Define composer.json as anchor to root path on laravel projects
   " set ag to ignore /vendor folder in laravel projects
+  " set ag to ignore /node_modules folder in react/npm projects
   let g:ctrlp_user_command = {
         \ 'types': {
         \   1: ['composer.json', 'ag %s -l --hidden -g "" --ignore ".git" --ignore "vendor/" | egrep -v "\.(git|hg|svn)/|.log$"'],
+        \   2: ['package.json', 'ag %s -l --hidden -g "" --ignore ".git" --ignore "node_modules/" | egrep -v "\.(git|hg|svn)/|.log$"'],
         \ },
         \ 'fallback': 'ag %s -l --hidden -g "" --ignore ".git" | egrep -v "\.(git|hg|svn)/|.log$"'
       \ }

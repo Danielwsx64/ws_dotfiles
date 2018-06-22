@@ -26,6 +26,7 @@ Plug 'andrewradev/splitjoin.vim' " Split structures
 Plug 'itchyny/lightline.vim' " pretty status bar
 Plug 'jby/tmux.vim' " tmux syntax
 Plug 'pbrisbin/vim-mkdir' " create folder if it doesn't exist
+Plug 'mxw/vim-jsx' " JSX syntax to react apps
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'thoughtbot/vim-rspec'

@@ -8,11 +8,15 @@ DEPENDENCES_PACKS=("curl" "git")
 
 # Packages to install
 DEB_PACKS=( "apt-transport-https" "ca-certificates" "software-properties-common"
-        "dconf-cli" "silversearcher-ag" "vim-gnome" "zsh" "tmux" "nodejs" "npm")
+        "dconf-cli" "silversearcher-ag" "vim-gnome" "zsh" "tmux" "nodejs" "npm"
+        "automake" "autoconf" "libreadline-dev" "libncurses-dev" "libssl-dev"
+        "libyaml-dev" "libxslt-dev" "libffi-dev" "libtool" "unixodbc-dev")
 
 # Custom apps to Install (without package management or custom configs)
 CUSTOM_APPS=("install_rvm" "install_solarized" "install_zsh_syntax_highlighting"
-             "install_docker" "install_docker_compose" "install_yarn")
+             "install_docker" "install_docker_compose" "install_yarn"
+             "install_asdf")
+
 
 # List of files to link
 FILES_LINK=("aliases" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc" "bin" "vim" "git/*" "irb/*")
@@ -28,6 +32,10 @@ function install_zsh_syntax_highlighting(){
   if [ ! -d "$HOME/.zsh-syntax-highlighting" ];then
     git clone --depth=1 git://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting"
   fi
+}
+
+function install_asdf(){
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.5.1
 }
 
 function install_rvm(){

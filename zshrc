@@ -72,3 +72,8 @@ TERM=screen-256color
 setopt -l
 cd .
 clear
+export PATH=$PATH:$HOME/.npm-global/bin
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash

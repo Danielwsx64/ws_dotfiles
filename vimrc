@@ -72,10 +72,6 @@ set expandtab
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
-" set test.vim configurations to run tests
-let test#strategy = "vtr" " run commands using Vim Tmux Runner
-let test#filename_modifier = ":p" " use absolute test path (fix elixir umbrela issue)
-
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
@@ -163,11 +159,20 @@ if is_tmux != ""
   autocmd VimEnter * VtrAttachToPane
 endif
 
+" set test.vim configurations to run tests
+if is_tmux != ""
+  let test#strategy = "vtr" " run commands using Vim Tmux Runner
+endif
+let test#filename_modifier = ":p" " use absolute test path (fix elixir umbrela issue)
+
 let g:solarized_termtrans=1
 syntax enable
 set background=dark
 colorscheme solarized
 
+" Configuration for mix formater
+let g:mix_format_on_save = 1
+let g:mix_format_options = '--check-equivalent'
 
 " Define some single Blade directives. This variable is used for highlighting only.
 let g:blade_custom_directives = ['datetime', 'javascript']

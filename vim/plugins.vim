@@ -31,6 +31,9 @@ Plug 'elixir-lang/vim-elixir' " sintax for elixir
 Plug 'keith/rspec.vim' " sintax for rspec
 Plug 'janko-m/vim-test' " run tests on vim, (elixir, ruby, others)
 
+Plug 'mhinz/vim-mix-format' " Run mix formater to elixir code
+
+
 "Plug 'thoughtbot/vim-rspec' run rspec tests
 
 Plug 'christoomey/vim-tmux-navigator'

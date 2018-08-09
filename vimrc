@@ -72,6 +72,10 @@ set expandtab
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
+" set test.vim configurations to run tests
+let test#strategy = "vtr" " run commands using Vim Tmux Runner
+let test#filename_modifier = ":p" " use absolute test path (fix elixir umbrela issue)
+
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
@@ -163,12 +167,6 @@ let g:solarized_termtrans=1
 syntax enable
 set background=dark
 colorscheme solarized
-
-if filereadable(expand("./bin/rspec"))
-  let g:rspec_command = "VtrSendCommandToRunner! ./bin/rspec {spec}"
-else
-  let g:rspec_command = "VtrSendCommandToRunner! rspec {spec}"
-endif
 
 
 " Define some single Blade directives. This variable is used for highlighting only.

@@ -28,12 +28,14 @@ Plug 'jby/tmux.vim' " tmux syntax
 Plug 'pbrisbin/vim-mkdir' " create folder if it doesn't exist
 Plug 'mxw/vim-jsx' " JSX syntax to react apps
 Plug 'elixir-lang/vim-elixir' " sintax for elixir
+Plug 'keith/rspec.vim' " sintax for rspec
+Plug 'janko-m/vim-test' " run tests on vim, (elixir, ruby, others)
+
+"Plug 'thoughtbot/vim-rspec' run rspec tests
 
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-rails'
-Plug 'keith/rspec.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'chrisbra/color_highlight'
 Plug 'christoomey/vim-tmux-runner'

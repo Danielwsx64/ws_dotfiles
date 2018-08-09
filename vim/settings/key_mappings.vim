@@ -6,10 +6,16 @@ vnoremap <c-y> "+y<CR>
 nnoremap <Leader><Leader> <c-^>
 
 " vim-rspec mappings
-nnoremap <Leader>rs :call RunCurrentSpecFile()<CR>
-nnoremap <Leader>rn :call RunNearestSpec()<CR>
-nnoremap <Leader>rl :call RunLastSpec()<CR>
-nnoremap <Leader>ra :call RunAllSpecs()<CR>
+" nnoremap <Leader>rs :call RunCurrentSpecFile()<CR>
+" nnoremap <Leader>rn :call RunNearestSpec()<CR>
+" nnoremap <Leader>rl :call RunLastSpec()<CR>
+" nnoremap <Leader>ra :call RunAllSpecs()<CR>
+"
+nmap <Leader>rs :TestFile<CR>
+nmap <Leader>rn :TestNearest<CR>
+nmap <Leader>rl :TestLast<CR>
+nmap <Leader>ra :TestSuite<CR>
+nmap <Leader>rv :TestVisit<CR>
 
 "Clear current search highlight by double tapping //
 nmap <silent> // :nohlsearch<CR>

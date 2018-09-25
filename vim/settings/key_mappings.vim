@@ -115,6 +115,9 @@ nnoremap <Leader>ga :VtrSendCommandToRunner git add .<CR>
 nnoremap <Leader>gfd :VtrSendCommandToRunner git diff 
 nnoremap <Leader>gfa :VtrSendCommandToRunner git add 
 
+" vim markdown preview
+nnoremap <Leader>mm :MarkdownPreview<CR>
+
 "send command to tmux
 nnoremap <Leader>tt :VtrSendCommandToRunner 
 

@@ -33,8 +33,9 @@ Plug 'janko-m/vim-test' " run tests on vim, (elixir, ruby, others)
 
 Plug 'mhinz/vim-mix-format' " Run mix formater to elixir code
 
+Plug 'iamcco/markdown-preview.vim' " an markdown preview
 
-"Plug 'thoughtbot/vim-rspec' run rspec tests
+"Plug 'thoughtbot/vim-rspec' run rspec tests (im using janko-m/vim-test now)
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-git'

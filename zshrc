@@ -69,11 +69,12 @@ TERM=screen-256color
 # Your secrets env var
 [[ -f ~/.secrets ]] && source ~/.secrets
 
-setopt -l
-cd .
-clear
 export PATH=$PATH:$HOME/.npm-global/bin
 
 . $HOME/.asdf/asdf.sh
-
 . $HOME/.asdf/completions/asdf.bash
+
+# Workaroud tmux rvm bug
+setopt -l
+cd .
+clear

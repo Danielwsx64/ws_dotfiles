@@ -15,3 +15,5 @@ alias hvim='vim `pwd`'
 alias laravel="docker run --rm -it -p 8000:8000 -v $(pwd):/workspace -w /workspace danielws/laravel bash"
 
 alias ruboparse="git diff --name-only master | grep -v cassette | grep -v .yml | grep -v .js | grep -v READM | grep -v seed| grep -v Gemfi | grep -v locaweb/devops | grep -v spec/spec_helper | grep -v spec/support | xargs rubocop"
+
+alias capslock="setxkbmap -option caps:none" # fix capslock bug with raiser keyboard

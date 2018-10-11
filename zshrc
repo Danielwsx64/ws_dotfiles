@@ -77,3 +77,5 @@ export PATH=$PATH:$HOME/.npm-global/bin:$HOME/.local/bin
 . $HOME/.asdf/asdf.sh
 
 . $HOME/.asdf/completions/asdf.bash
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

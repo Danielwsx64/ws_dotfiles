@@ -69,7 +69,7 @@ TERM=screen-256color
 # Your secrets env var
 [[ -f ~/.secrets ]] && source ~/.secrets
 
-export PATH=$PATH:$HOME/.npm-global/bin
+export PATH=$PATH:$HOME/.npm-global/bin:$HOME/.local/bin
 
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
@@ -78,3 +78,5 @@ export PATH=$PATH:$HOME/.npm-global/bin
 setopt -l
 cd .
 clear
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

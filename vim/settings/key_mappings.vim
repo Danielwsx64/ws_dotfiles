@@ -105,8 +105,8 @@ nnoremap <silent> <C-\> :LocalCloseNerdTree<cr>
 map <Leader>ct :!ctags -R .<CR>
 
 "grep the current word using K (mnemonic Kurrent)
-nnoremap <silent> K :Ag <cword><CR>
-vnoremap <silent> K y:Ag <C-R>"<CR>
+nnoremap <silent> ag :Ag <cword><CR>
+vnoremap <silent> ag y:Ag <C-R>"<CR>
 
 "git mapping
 nnoremap <Leader>gs :VtrSendCommandToRunner git status<CR>
@@ -131,3 +131,9 @@ let g:multi_cursor_next_key            = '<C-n>'
 let g:multi_cursor_prev_key            = '<C-b>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
+
+
+" Snippets keys
+let g:UltiSnipsExpandTrigger="sn"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"

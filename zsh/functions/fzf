@@ -9,6 +9,15 @@ fe() {
   [ -n "$file" ] && vim "$file"
 }
 
+fw() {
+  local dir
+  namespace=workspace
+  dir=$(ls -d ~/$namespace/* | fzf +m)
+  echo $namespace/$(basename $dir) > /tmp/current_project.tmp
+  cd "$dir"
+  ls --color -a
+}
+
 fp() {
   local dir
   namespace=$DANIEL_WORKSPACE
@@ -16,6 +25,17 @@ fp() {
   echo $namespace/$(basename $dir) > /tmp/current_project.tmp
   cd "$dir"
   ls --color -a
+}
+
+ff() {
+  local file
+  local current
+  tempfile=/tmp/current_project.tmp
+  touch $tempfile
+  current=$(cat $tempfile)/
+  file=$(find $(pwd) -name .git -prune -o -name .rvm -prune -o -name .rbenv\
+    -prune -o -type d -o -print | fzf --select-1 --exit-0)
+  [ -n "$file" ] && vim "$file"
 }
 
 fd() {

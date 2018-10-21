@@ -15,7 +15,7 @@ DEB_PACKS=( "apt-transport-https" "ca-certificates" "software-properties-common"
 # Custom apps to Install (without package management or custom configs)
 CUSTOM_APPS=("install_rvm" "install_solarized" "install_zsh_syntax_highlighting"
              "install_docker" "install_docker_compose" "install_yarn"
-             "install_asdf")
+             "install_asdf" "install_fzf")
 
 
 # List of files to link
@@ -36,6 +36,11 @@ function install_zsh_syntax_highlighting(){
 
 function install_asdf(){
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.5.1
+}
+
+function install_fzf(){
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
 }
 
 function install_rvm(){
@@ -207,6 +212,9 @@ function script_help(){
   echo 'Options:'
   echo ' -i, --install       Install WS Dotfiles.'
   echo ' -r, --reinstall     Reinstall WS Dotfiles.'
+  echo
+  echo ' INSTALL SPECIFIC ITEMS'
+  echo 'fzf:      --install-fzf'
 }
 
 case "$1" in
@@ -228,6 +236,9 @@ case "$1" in
     install_yarn
     ;;
 
+  --install-fzf)
+    install_fzf
+    ;;
   *)
     script_help
     ;;

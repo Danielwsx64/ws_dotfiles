@@ -11,7 +11,7 @@ fe() {
 
 fp() {
   local dir
-  namespace=projetos
+  namespace=$DANIEL_WORKSPACE
   dir=$(ls -d ~/$namespace/* | fzf +m)
   echo $namespace/$(basename $dir) > /tmp/current_project.tmp
   cd "$dir"
@@ -31,9 +31,9 @@ fkill() {
   ps -ef | sed 1d | fzf -m | awk '{print $2}' | xargs kill -${1:-9}
 }
 
-frep(){
+fag(){
   local results line_number filename
-  results=$(grep -rn $1 $2)
+  results=$(ag $1 $2 --vimgrep)
   if [ ! -z "$results" ]; then
     result=$(echo "$results" | fzf +s +m -e)
     if [ ! -z "$result" ]; then
@@ -52,7 +52,7 @@ fco() {
 }
 
 p(){
-  namespace=projetos
+  namespace=WsLW
   if [ "$1" == "." ] ; then
     cd $1
     echo $namespace/$(basename $(pwd)) > /tmp/current_project.tmp

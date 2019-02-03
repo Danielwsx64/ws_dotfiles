@@ -3,7 +3,7 @@
 # https://github.com/thoughtbot/dotfiles/blob/master/bin/tat
 # Attach or create tmux session named the same as current directory.
 
-path_name="$(basename "$PWD" | tr . -)"
+path_name="$(basename "$PWD" | tr . _)"
 session_name=${1-$path_name}
 
 not_in_tmux() {

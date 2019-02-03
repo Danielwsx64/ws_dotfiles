@@ -2,3 +2,6 @@ vim/bundle/
 gnome-terminal-colors-solarized/
 .DS_Store
 vim/backups
+
+xmonad/*
+!xmonad/xmonad.hs

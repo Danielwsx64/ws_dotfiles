@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Load resources
+
+xrdb -merge .Xresources
+
+# Set up an icon tray
+stalonetray &
+
+# Fire up apps
+
+xscreensaver -no-splash &
+
+# Set background image with feh
+feh --bg-scale ~/.ws_dotfiles/wallpapers/default.jpg &
+
+xfce4-power-manager &
+
+if [ -x /usr/bin/nm-applet ] ; then
+   nm-applet --sm-disable &
+fi
+
+exec xmonad

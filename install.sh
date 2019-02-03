@@ -15,11 +15,12 @@ DEB_PACKS=( "apt-transport-https" "ca-certificates" "software-properties-common"
 # Custom apps to Install (without package management or custom configs)
 CUSTOM_APPS=("install_rvm" "install_solarized" "install_zsh_syntax_highlighting"
              "install_docker" "install_docker_compose" "install_yarn"
-             "install_asdf" "install_fzf")
+             "install_asdf" "install_fzf" "install_xmonad")
 
 
 # List of files to link
-FILES_LINK=("aliases" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc" "bin" "vim" "git/*" "irb/*")
+FILES_LINK=("aliases" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc" "bin" "vim"
+"git/*" "irb/*" "xsessionrc" "Xresources" "xmonad" "xmobarrc" "stalonetrayrc")
 
 # Dotfiles folder name
 WS_FOLDER='ws_dotfiles'
@@ -27,6 +28,10 @@ WS_FOLDER='ws_dotfiles'
 # ---------------------------------------
 # Custom install functions
 # ---------------------------------------
+
+function install_xmonad(){
+  sudo apt-get install xmonad suckless-tools i3lock xmobar stalonetray feh xfce4-power-manage
+}
 
 function install_zsh_syntax_highlighting(){
   if [ ! -d "$HOME/.zsh-syntax-highlighting" ];then

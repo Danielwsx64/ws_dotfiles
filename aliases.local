@@ -6,6 +6,10 @@ wsdf=$HOME/.ws_dotfiles
 alias ws='cd ~/WsLW'
 alias wd='cd ~/workspace'
 
+
+alias credo='mix credo'
+alias credos='mix credo --strict'
+
 alias tnsl='tmux new -s Dws_LW'
 alias tasl='tmux a -t Dws_LW'
 alias trvm='tmux -L $(date +%s) new -s Dws'

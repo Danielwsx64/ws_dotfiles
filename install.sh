@@ -8,19 +8,19 @@ DEPENDENCES_PACKS=("curl" "git")
 
 # Packages to install
 DEB_PACKS=( "apt-transport-https" "ca-certificates" "software-properties-common"
-        "dconf-cli" "silversearcher-ag" "vim-gnome" "zsh" "tmux" "nodejs" "npm"
-        "automake" "autoconf" "libreadline-dev" "libncurses-dev" "libssl-dev"
-        "libyaml-dev" "libxslt-dev" "libffi-dev" "libtool" "unixodbc-dev")
+            "dconf-cli" "silversearcher-ag" "vim-gnome" "zsh" "tmux" "automake"
+            "autoconf" "libreadline-dev" "libncurses-dev" "libssl-dev"
+            "libyaml-dev" "libxslt-dev" "libffi-dev" "libtool" "unixodbc-dev")
 
 # Custom apps to Install (without package management or custom configs)
-CUSTOM_APPS=("install_rvm" "install_solarized" "install_zsh_syntax_highlighting"
-             "install_docker" "install_docker_compose" "install_yarn"
-             "install_asdf" "install_fzf" "install_xmonad")
-
+CUSTOM_APPS=("install_solarized" "install_zsh_syntax_highlighting"
+             "install_docker" "install_docker_compose" "install_asdf"
+             "install_fzf" "install_xmonad" "install_tmux_plugin")
 
 # List of files to link
-FILES_LINK=("aliases" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc" "bin" "vim"
-"git/*" "irb/*" "xsessionrc" "Xresources" "xmonad" "xmobarrc" "stalonetrayrc")
+FILES_LINK=("aliases" "aliases.local" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc"
+"bin" "vim" "git/*" "irb/*" "xsessionrc" "Xresources" "xmonad" "xmobarrc"
+"stalonetrayrc")
 
 # Dotfiles folder name
 WS_FOLDER='ws_dotfiles'
@@ -29,8 +29,12 @@ WS_FOLDER='ws_dotfiles'
 # Custom install functions
 # ---------------------------------------
 
+function install_tmux_plugin(){
+  git clone https://github.com/tmux-plugins/tpm $HOME/tmux/plugins/tpm
+}
+
 function install_xmonad(){
-  sudo apt-get install xmonad suckless-tools i3lock xmobar stalonetray feh xfce4-power-manage
+  sudo apt-get install xmonad suckless-tools i3lock xmobar stalonetray feh xfce4-power-manager
 }
 
 function install_zsh_syntax_highlighting(){
@@ -48,11 +52,6 @@ function install_fzf(){
   ~/.fzf/install
 }
 
-function install_rvm(){
-  gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-  \curl -sSL https://get.rvm.io | bash -s stable
-}
-
 function install_solarized(){
   mkdir -p "$HOME/.$WS_FOLDER"
   git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized"
@@ -67,18 +66,6 @@ function install_docker(){
 function install_docker_compose(){
   sudo curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
   sudo chmod +x /usr/local/bin/docker-compose
-}
-
-function install_yarn(){
-  configure_npm
-  npm install -g yarn
-}
-
-function configure_npm(){
-  mkdir ~/.npm-global
-  npm config set prefix '~/.npm-global'
-  echo 'export PATH=$PATH:$HOME/.npm-global/bin' >> ~/.zshrc
-  source ~/.profile
 }
 # ------------ End of custom install functions
 
@@ -238,7 +225,6 @@ case "$1" in
     ;;
 
   --test)
-    install_yarn
     ;;
 
   --install-fzf)

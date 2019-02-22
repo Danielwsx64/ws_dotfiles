@@ -52,4 +52,6 @@ PROMPT='
 %~
 ${smiley}  %{$reset_color%}'
 
-RPROMPT='%{$fg[white]%} $(~/.rvm/bin/rvm-prompt)$(git_prompt)%{$reset_color%}'
+RPROMPT='%{$fg[white]%} $(git_prompt)%{$reset_color%}'
+# Use RVM to See ruby version
+# RPROMPT='%{$fg[white]%} $(~/.rvm/bin/rvm-prompt)$(git_prompt)%{$reset_color%}'

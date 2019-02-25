@@ -119,7 +119,7 @@ nnoremap <Leader>gfa :VtrSendCommandToRunner git add
 nnoremap <Leader>mm :MarkdownPreview<CR>
 
 "send command to tmux
-nnoremap <Leader>tt :VtrSendCommandToRunner 
+"nnoremap <Leader>tt :VtrSendCommandToRunner 
 
 " multiple cursor mapping
 let g:multi_cursor_use_default_mapping = 0

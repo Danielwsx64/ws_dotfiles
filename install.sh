@@ -9,7 +9,7 @@ DEPENDENCES_PACKS=("curl" "git")
 # Packages to install
 DEB_PACKS=( "apt-transport-https" "ca-certificates" "software-properties-common"
             "dconf-cli" "silversearcher-ag" "vim-gnome" "zsh" "tmux" "automake"
-            "autoconf" "libreadline-dev" "libncurses-dev" "libssl-dev"
+            "autoconf" "libreadline-dev" "libncurses-dev" "libssl-dev" "xclip"
             "libyaml-dev" "libxslt-dev" "libffi-dev" "libtool" "unixodbc-dev")
 
 # Custom apps to Install (without package management or custom configs)

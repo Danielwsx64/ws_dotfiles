@@ -68,7 +68,7 @@ TERM=screen-256color
 # Your secrets env var
 [[ -f ~/.secrets ]] && source ~/.secrets
 
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin:/snap/bin
 
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash

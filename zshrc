@@ -78,4 +78,6 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
+source ~/.bin/tmuxinator.zsh
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

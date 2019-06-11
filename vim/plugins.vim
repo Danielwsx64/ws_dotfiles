@@ -28,7 +28,8 @@ Plug 'mxw/vim-jsx' " JSX syntax to react apps
 Plug 'elixir-lang/vim-elixir' " sintax for elixir
 Plug 'keith/rspec.vim' " sintax for rspec
 Plug 'janko-m/vim-test' " run tests on vim, (elixir, ruby, others)
-Plug 'mhinz/vim-mix-format' " Run mix formater to elixir code
+" Plug 'mhinz/vim-mix-format' " Run mix formater to elixir code
+Plug 'chiel92/vim-autoformat'
 Plug 'iamcco/markdown-preview.vim' " an markdown preview
 
 Plug 'slashmili/alchemist.vim' " alchemist for elixir (goto definition and complete)

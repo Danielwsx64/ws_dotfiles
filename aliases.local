@@ -23,3 +23,5 @@ alias ruboparse="git diff --name-only master | grep -v cassette | grep -v .yml |
 alias capslock="setxkbmap -option caps:none" # fix capslock bug with raiser keyboard
 
 alias audio="alsamixer"
+
+alias jsprettier="npx prettier --config .prettierrc.json --write ./src/**/*.{js,json,md}"

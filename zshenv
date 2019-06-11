@@ -11,3 +11,4 @@ export DANIEL_WORKSPACE="WsLW"
 
 # Local config
 [[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
+export PATH="/home/daniel/.ebcli-virtual-env/executables:$PATH"

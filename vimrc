@@ -15,7 +15,7 @@ set autowrite         " Automatically :write before running commands
 set ignorecase        " Ignore case when searching...
 set smartcase         " ...unless we type a capital
 set showmode          " Show current mode down the bottom
-                      " set visualbell                                                                   " No noise
+" set visualbell                                                                   " No noise
 set nowrap            " Don't wrap lines
 set foldmethod=syntax " Turn on folding
 set nofoldenable      " Open file with all fold opened
@@ -41,9 +41,9 @@ augroup vimrcEx
   " Don't do it for commit messages, when the position is invalid, or when
   " inside an event handler (happens when dropping a file on gvim).
   autocmd BufReadPost *
-    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+        \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
 
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
@@ -91,7 +91,7 @@ if executable('ag')
         \   2: ['package.json', 'ag %s -l --hidden -g "" --ignore ".git" --ignore "node_modules/" | egrep -v "\.(git|hg|svn)/|.log$"'],
         \ },
         \ 'fallback': 'ag %s -l --hidden -g "" --ignore ".git" | egrep -v "\.(git|hg|svn)/|.log$"'
-      \ }
+        \ }
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
@@ -171,8 +171,13 @@ set background=dark
 colorscheme solarized
 
 " Configuration for mix formater
-let g:mix_format_on_save = 1
-let g:mix_format_options = '--check-equivalent'
+" let g:mix_format_on_save = 1
+" let g:mix_format_options = '--check-equivalent'
+au BufWrite * :Autoformat
+let g:formatters_javascript = ['prettier']
+let g:formatters_javascript_jsx = ['prettier']
+" let g:autoformat_verbosemode=1
+autocmd FileType yaml let b:autoformat_autoindent=0
 
 " Define some single Blade directives. This variable is used for highlighting only.
 let g:blade_custom_directives = ['datetime', 'javascript']

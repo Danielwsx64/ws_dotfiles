@@ -142,7 +142,7 @@ set complete+=kspell
 set diffopt+=vertical
 
 " automatically rebalance windows on vim resize
-autocmd VimResized * :wincmd =
+" autocmd VimResized * :wincmd =
 
 " ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
@@ -163,6 +163,7 @@ endif
 if is_tmux != ""
   let test#strategy = "vtr" " run commands using Vim Tmux Runner
 endif
+
 let test#filename_modifier = ":p" " use absolute test path (fix elixir umbrela issue)
 
 let g:solarized_termtrans=1
@@ -170,23 +171,13 @@ syntax enable
 set background=dark
 colorscheme solarized
 
-" Configuration for mix formater
-" let g:mix_format_on_save = 1
-" let g:mix_format_options = '--check-equivalent'
 au BufWrite * :Autoformat
 let g:formatters_javascript = ['prettier']
 let g:formatters_javascript_jsx = ['prettier']
 " let g:autoformat_verbosemode=1
+
 autocmd FileType yaml let b:autoformat_autoindent=0
-
-" Define some single Blade directives. This variable is used for highlighting only.
-let g:blade_custom_directives = ['datetime', 'javascript']
-
-" Define pairs of Blade directives. This variable is used for highlighting and indentation.
-let g:blade_custom_directives_pairs = {
-      \   'markdown': 'endmarkdown',
-      \   'cache': 'endcache',
-      \ }
+autocmd FileType conf let b:autoformat_autoindent=0
 
 " Define vim-ident-guides schema color
 let g:indent_guides_auto_colors = 0

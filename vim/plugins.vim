@@ -26,13 +26,12 @@ Plug 'itchyny/lightline.vim' " pretty status bar
 Plug 'jby/tmux.vim' " tmux syntax
 Plug 'pbrisbin/vim-mkdir' " create folder if it doesn't exist
 Plug 'elixir-lang/vim-elixir' " sintax for elixir
-Plug 'keith/rspec.vim' " sintax for rspec
 Plug 'janko-m/vim-test' " run tests on vim, (elixir, ruby, others)
-Plug 'chiel92/vim-autoformat'
+Plug 'chiel92/vim-autoformat' " code formatt
 Plug 'iamcco/markdown-preview.vim' " an markdown preview
 
 "javascript
-Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript' " javascript sintax
 Plug 'mxw/vim-jsx' " JSX syntax to react apps
 
 "elixir
@@ -60,3 +59,4 @@ call plug#end()
 " Plug 'jwalton512/vim-blade'
 " Plug 'tpope/vim-rails'
 " Plug 'vim-ruby/vim-ruby'
+" Plug 'keith/rspec.vim' " sintax for rspec

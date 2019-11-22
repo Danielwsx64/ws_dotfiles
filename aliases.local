@@ -7,8 +7,8 @@ alias ws='cd ~/WsLW'
 alias wd='cd ~/workspace'
 
 
-alias credo='mix credo'
-alias credos='mix credo --strict'
+alias credo='mix credo list'
+alias credos='mix credo list --strict'
 
 alias tnsl='tmux new -s Dws_LW'
 alias tasl='tmux a -t Dws_LW'
@@ -25,3 +25,7 @@ alias capslock="setxkbmap -option caps:none" # fix capslock bug with raiser keyb
 alias audio="alsamixer"
 
 alias jsprettier="npx prettier --config .prettierrc.json --write ./src/**/*.{js,json,md}"
+
+alias spotify-nacional='tizonia --spotify-playlist "Nacionais"'
+alias spotify-rock-90='tizonia --spotify-playlist-id "37i9dQZF1DX1rVvRgjX59F"'
+alias spotify-rock-00='tizonia --spotify-playlist-id "37i9dQZF1DX3oM43CtKnRV"'

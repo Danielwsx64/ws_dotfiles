@@ -2,6 +2,20 @@ if &compatible
   set nocompatible
 end
 
+function! g:elixirls.compile(...)
+  let l:commands = join([
+        \ 'mix local.hex --force',
+        \ 'mix local.rebar --force',
+        \ 'mix deps.get',
+        \ 'mix compile',
+        \ 'mix elixir_ls.release'
+        \ ], '&&')
+
+  echom '>>> Compiling elixirls'
+  silent call system(l:commands)
+  echom '>>> elixirls compiled'
+endfunction
+
 call plug#begin('~/.vim/bundle')
 
 " To read about and get more plugins https://vimawesome.com/
@@ -27,15 +41,18 @@ Plug 'jby/tmux.vim' " tmux syntax
 Plug 'pbrisbin/vim-mkdir' " create folder if it doesn't exist
 Plug 'elixir-lang/vim-elixir' " sintax for elixir
 Plug 'janko-m/vim-test' " run tests on vim, (elixir, ruby, others)
-Plug 'chiel92/vim-autoformat' " code formatt
+Plug 'chiel92/vim-autoformat' " code format for all languages
 Plug 'iamcco/markdown-preview.vim' " an markdown preview
+
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()  } } " Code completation
+Plug 'JakeBecker/elixir-ls', { 'do': { -> g:elixirls.compile()  }  } " Language server for elixir
 
 "javascript
 Plug 'pangloss/vim-javascript' " javascript sintax
 Plug 'mxw/vim-jsx' " JSX syntax to react apps
 
 "elixir
-Plug 'slashmili/alchemist.vim' " alchemist for elixir (goto definition and complete)
+" Plug 'slashmili/alchemist.vim' " alchemist for elixir (goto definition and complete)
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-git'

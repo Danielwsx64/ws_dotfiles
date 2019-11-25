@@ -22,6 +22,19 @@ set nofoldenable      " Open file with all fold opened
 
 syntax on
 
+
+" ================= Config For elixir-ls + COC ============
+let g:elixirls = {
+      \ 'path': printf('%s', '/home/daniel/.ws_dotfiles/vim/bundle/elixir-ls'),
+      \ }
+
+let g:elixirls.lsp = printf(
+      \ '%s/%s',
+      \ g:elixirls.path,
+      \ 'release/language_server.sh')
+" ========================= END ===========================
+
+
 so ~/.vim/plugins.vim
 
 " laod custom settings
@@ -195,6 +208,14 @@ let g:indent_guides_start_level = 2
 
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black   ctermbg=10
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=gray ctermbg=0
+
+call coc#config('languageserver', {
+      \ 'elixir': {
+      \   'command': g:elixirls.lsp,
+      \   'trace.server': 'verbose',
+      \   'filetypes': ['elixir', 'eelixir']
+      \ }
+      \})
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")

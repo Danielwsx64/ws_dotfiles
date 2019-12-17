@@ -29,3 +29,5 @@ alias jsprettier="npx prettier --config .prettierrc.json --write ./src/**/*.{js,
 alias spotify-nacional='tizonia --spotify-playlist "Nacionais"'
 alias spotify-rock-90='tizonia --spotify-playlist-id "37i9dQZF1DX1rVvRgjX59F"'
 alias spotify-rock-00='tizonia --spotify-playlist-id "37i9dQZF1DX3oM43CtKnRV"'
+
+alias gdh='git diff HEAD'

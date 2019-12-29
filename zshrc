@@ -16,6 +16,16 @@ done
 autoload -U colors
 colors
 
+function chpwd() {
+  if [ -r $PWD/.env  ]; then
+    source $PWD/.env
+  fi
+
+  if [ -r $PWD/.env.local  ]; then
+    source $PWD/.env.local
+  fi
+}
+
 # enable colored output from ls, etc
 export CLICOLOR=1
 

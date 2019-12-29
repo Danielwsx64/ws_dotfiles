@@ -20,6 +20,8 @@ set nowrap            " Don't wrap lines
 set foldmethod=syntax " Turn on folding
 set nofoldenable      " Open file with all fold opened
 
+set belloff=all
+
 syntax on
 
 

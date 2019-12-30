@@ -21,7 +21,7 @@ set foldmethod=syntax " Turn on folding
 set nofoldenable      " Open file with all fold opened
 
 set belloff=all
-
+set hidden            " Allow switch beteewn buffers without save
 syntax on
 
 

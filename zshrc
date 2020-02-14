@@ -26,6 +26,12 @@ function chpwd() {
   fi
 }
 
+DISABLE_AUTO_TITLE="true"
+
+function precmd () {
+  printf "\033k${PWD##*/}\033\\"
+}
+
 # enable colored output from ls, etc
 export CLICOLOR=1
 

@@ -218,6 +218,8 @@ let g:indent_guides_start_level = 2
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black   ctermbg=10
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=gray ctermbg=0
 
+command W w
+
 call coc#config('languageserver', {
       \ 'elixir': {
       \   'command': g:elixirls.lsp,

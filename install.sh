@@ -8,19 +8,18 @@ DEPENDENCES_PACKS=("curl" "git")
 
 # Packages to install
 DEB_PACKS=( "apt-transport-https" "ca-certificates" "software-properties-common"
-            "dconf-cli" "silversearcher-ag" "vim-gnome" "zsh" "tmux" "automake"
-            "autoconf" "libreadline-dev" "libncurses-dev" "libssl-dev" "xclip"
-            "libyaml-dev" "libxslt-dev" "libffi-dev" "libtool" "unixodbc-dev")
+"dconf-cli" "silversearcher-ag" "vim-gnome" "zsh" "tmux" "automake"
+"autoconf" "libreadline-dev" "libncurses-dev" "libssl-dev" "xclip"
+"libyaml-dev" "libxslt-dev" "libffi-dev" "libtool" "unixodbc-dev")
 
 # Custom apps to Install (without package management or custom configs)
 CUSTOM_APPS=("install_solarized" "install_zsh_syntax_highlighting"
-             "install_docker" "install_docker_compose" "install_asdf"
-             "install_fzf" "install_xmonad" "install_tmux_plugin")
+"install_docker" "install_docker_compose" "install_asdf"
+"install_fzf" "install_tmux_plugin")
 
 # List of files to link
 FILES_LINK=("aliases" "aliases.local" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc"
-"bin" "vim" "git/*" "irb/*" "xsessionrc" "Xresources" "xmonad" "xmobarrc"
-"stalonetrayrc")
+"bin" "vim" "git/*")
 
 # Dotfiles folder name
 WS_FOLDER='ws_dotfiles'
@@ -33,10 +32,6 @@ function install_tmux_plugin(){
   git clone https://github.com/tmux-plugins/tpm $HOME/tmux/plugins/tpm
 }
 
-function install_xmonad(){
-  sudo apt-get install xmonad suckless-tools i3lock xmobar stalonetray feh xfce4-power-manager
-}
-
 function install_zsh_syntax_highlighting(){
   if [ ! -d "$HOME/.zsh-syntax-highlighting" ];then
     git clone --depth=1 git://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh-syntax-highlighting"
@@ -44,7 +39,7 @@ function install_zsh_syntax_highlighting(){
 }
 
 function install_asdf(){
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.5.1
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 }
 
 function install_fzf(){
@@ -64,7 +59,7 @@ function install_docker(){
 }
 
 function install_docker_compose(){
-  sudo curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+  sudo curl -L https://github.com/docker/compose/releases/download/1.25.4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
   sudo chmod +x /usr/local/bin/docker-compose
 }
 # ------------ End of custom install functions

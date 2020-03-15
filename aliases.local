@@ -6,7 +6,6 @@ wsdf=$HOME/.ws_dotfiles
 alias ws='cd ~/WsLW'
 alias wd='cd ~/workspace'
 
-
 alias credo='mix credo list'
 alias credos='mix credo list --strict'
 
@@ -16,18 +15,6 @@ alias trvm='tmux -L $(date +%s) new -s Dws'
 
 alias hvim='vim `pwd`'
 
-alias laravel="docker run --rm -it -p 8000:8000 -v $(pwd):/workspace -w /workspace danielws/laravel bash"
-
-alias ruboparse="git diff --name-only master | grep -v cassette | grep -v .yml | grep -v .js | grep -v READM | grep -v seed| grep -v Gemfi | grep -v locaweb/devops | grep -v spec/spec_helper | grep -v spec/support | xargs rubocop"
-
-alias capslock="setxkbmap -option caps:none" # fix capslock bug with raiser keyboard
-
-alias audio="alsamixer"
-
 alias jsprettier="npx prettier --config .prettierrc.json --write ./src/**/*.{js,json,md}"
-
-alias spotify-nacional='tizonia --spotify-playlist "Nacionais"'
-alias spotify-rock-90='tizonia --spotify-playlist-id "37i9dQZF1DX1rVvRgjX59F"'
-alias spotify-rock-00='tizonia --spotify-playlist-id "37i9dQZF1DX3oM43CtKnRV"'
 
 alias gdh='git diff HEAD'

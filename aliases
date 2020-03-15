@@ -130,34 +130,8 @@ alias cl='clear'
 # Zippin
 alias gz='tar -zcvf'
 
-# Ruby
-alias tfdl='tail -f log/development.log'
-alias tftl='tail -f log/test.log'
-
-alias ka9='killall -9'
-alias k9='kill -9'
-
-# Gem install
-alias sgi='sudo gem install --no-ri --no-rdoc'
-alias gi='gem install --no-ri --no-rdoc'
-
 # Forward port 80 to 3000
 alias portforward='sudo ipfw add 1000 forward 127.0.0.1,3000 ip from any to any 80 in'
-
-alias rdm='rake db:migrate'
-alias rdr='rake db:rollback'
-alias rdmr='rake db:migrate:redo'
-alias rrs='rake routes'
-
-# Rspec
-alias rs='rspec spec'
-
-# Rails
-alias rc='rails c'
-alias rsb='rails s -b 0.0.0.0'
-
-#Rubocop
-alias ruboparse="git diff --name-only master | grep -v cassette | grep -v .yml | grep -v .js | grep -v READM | grep -v seed| grep -v Gemfi | grep -v locaweb/devops | grep -v spec/spec_helper | grep -v spec/support | xargs rubocop"
 
 # your aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local

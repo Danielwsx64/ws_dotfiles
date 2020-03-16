@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# sudo apt-get install fonts-powerline
+# sudo add-apt-repository ppa:neovim-ppa/stable
 # Custom repositories
 CUSTOM_REPOSITORIES=("ppa:pi-rho/dev")
 

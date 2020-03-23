@@ -113,6 +113,7 @@ let test#filename_modifier = ":p" " use absolute test path (fix elixir umbrela i
 au BufWrite * :Autoformat
 let g:formatters_javascript = ['prettier']
 let g:formatters_javascript_jsx = ['prettier']
+let g:formatters_typescript = ['prettier']
 " let g:autoformat_verbosemode=1
 
 autocmd FileType yaml let b:autoformat_autoindent=0

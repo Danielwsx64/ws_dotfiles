@@ -66,6 +66,9 @@ Plug 'altercation/vim-colors-solarized'
 " Support Elixir
 Plug 'elixir-lang/vim-elixir'
 
+" TypeScript sintax
+Plug 'leafgarland/typescript-vim'
+
 " For tests
 Plug 'janko-m/vim-test'
 

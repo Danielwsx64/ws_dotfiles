@@ -41,7 +41,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tomtom/tcomment_vim'
 
 " Common vim configs
-Plug 'tpope/vim-sensible'
+" Plug 'tpope/vim-sensible'
 
 " Use ag in vim
 Plug 'rking/ag.vim'

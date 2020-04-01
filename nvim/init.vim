@@ -27,6 +27,12 @@ set fillchars=vert:\|
 autocmd ColorScheme * highlight VertSplit cterm=NONE ctermfg=Green ctermbg=NONE
 set colorcolumn=80
 
+" ident config
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set expandtab
+
 " Numbers
 set number
 set numberwidth=5

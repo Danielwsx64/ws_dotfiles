@@ -11,33 +11,33 @@ let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
 let NERDTreeNodeDelimiter = "\u263a" " smiley face"
 
 augroup nerdtree
-	autocmd!
-	autocmd FileType nerdtree setlocal nolist " turn off whitespace characters
-	autocmd FileType nerdtree setlocal nocursorline " turn off line highlighting for performance
+  autocmd!
+  autocmd FileType nerdtree setlocal nolist " turn off whitespace characters
+  autocmd FileType nerdtree setlocal nocursorline " turn off line highlighting for performance
 augroup END
 
 function! ToggleNerdTree()
-	if @% != "" && @% !~ "Startify" && (!exists("g:NERDTree") || (g:NERDTree.ExistsForTab() && !g:NERDTree.IsOpen()))
-		:NERDTreeFind
-	else
-		:NERDTreeToggle
-	endif
+  if @% != "" && @% !~ "Startify" && (!exists("g:NERDTree") || (g:NERDTree.ExistsForTab() && !g:NERDTree.IsOpen()))
+    :NERDTreeFind
+  else
+    :NERDTreeToggle
+  endif
 endfunction
 
 
 let NERDTreeShowHidden=1
 let g:NERDTreeIndicatorMapCustom = {
-			\ "Modified"  : "✹",
-			\ "Staged"    : "✚",
-			\ "Untracked" : "✭",
-			\ "Renamed"   : "➜",
-			\ "Unmerged" : "═",
-			\ "Deleted" : "✖",
-			\ "Dirty" : "✗",
-			\ "Clean" : "✔︎",
-			\ 'Ignored' : '☒',
-			\ "Unknown" : "?"
-			\ }
+      \ "Modified"  : "✹",
+      \ "Staged"    : "✚",
+      \ "Untracked" : "✭",
+      \ "Renamed"   : "➜",
+      \ "Unmerged" : "═",
+      \ "Deleted" : "✖",
+      \ "Dirty" : "✗",
+      \ "Clean" : "✔︎",
+      \ 'Ignored' : '☒',
+      \ "Unknown" : "?"
+      \ }
 
 " ======================
 " Solarized configuration
@@ -93,11 +93,11 @@ set wildignore+=*/node_modules/*,*/_build/*,*/deps/*,*/.elixir_ls/*
 let is_tmux = $TMUX
 
 if is_tmux != ""
-	autocmd VimEnter * VtrAttachToPane
+  autocmd VimEnter * VtrAttachToPane
 endif
 
 if is_tmux != ""
-	let test#strategy = "vtr" " run commands using Vim Tmux Runner
+  let test#strategy = "vtr" " run commands using Vim Tmux Runner
 endif
 
 " ======================
@@ -109,11 +109,13 @@ let test#filename_modifier = ":p" " use absolute test path (fix elixir umbrela i
 " ======================
 " AutoFormat Stuff
 " ======================
+let g:python3_host_prog="/usr/bin/python3"
 
 au BufWrite * :Autoformat
-let g:formatters_javascript = ['prettier']
-let g:formatters_javascript_jsx = ['prettier']
-let g:formatters_typescript = ['prettier']
+
+" fix broken ts formatter
+let g:formatdef_my_custom_ts = '"prettier --stdin-filepath ".expand("%:p").(&textwidth ? " --print-width ".&textwidth : "")." --tab-width=".shiftwidth()'
+let g:formatters_typescript = ['my_custom_ts']
 " let g:autoformat_verbosemode=1
 
 autocmd FileType yaml let b:autoformat_autoindent=0
@@ -126,22 +128,7 @@ autocmd FileType conf let b:autoformat_autoindent=0
 call coc#config('languageserver', {'elixir': {'command': g:elixirls.lsp, 'trace.server': 'verbose',  'filetypes': ['elixir', 'eelixir'] } })
 
 
-let g:coc_global_extensions = [
-			\ 'coc-elixir',
-			\ 'coc-css',
-			\ 'coc-json',
-			\ 'coc-tsserver',
-			\ 'coc-git',
-			\ 'coc-eslint',
-			\ 'coc-tslint-plugin',
-			\ 'coc-pairs',
-			\ 'coc-sh',
-			\ 'coc-vimlsp',
-			\ 'coc-emmet',
-			\ 'coc-prettier',
-			\ 'coc-ultisnips',
-			\ 'coc-explorer'
-			\ ]
+let g:coc_global_extensions = [ 'coc-elixir' ]
 
 " ======================
 " Fix for endwise + COC

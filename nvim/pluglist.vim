@@ -68,6 +68,7 @@ Plug 'elixir-lang/vim-elixir'
 
 " TypeScript sintax
 Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
 
 " For tests
 Plug 'janko-m/vim-test'

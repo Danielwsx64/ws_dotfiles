@@ -2,8 +2,8 @@
 let mapleader = " "
 
 " Copy Keys
-nnoremap <c-y> "+y<CR>
-vnoremap <c-y> "+y<CR>
+" nnoremap <c-y> "+y<CR>
+" vnoremap <c-y> "+y<CR>
 
 " Switch between the last two files
 nnoremap <Leader><Leader> <c-^>
@@ -91,15 +91,15 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 inoremap <silent><expr> <TAB>
-			\ pumvisible() ? "\<C-n>" :
-			\ <SID>check_back_space() ? "\<TAB>" :
-			\ coc#refresh()
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Disable endwise auto mapping

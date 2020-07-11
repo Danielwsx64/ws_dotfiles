@@ -9,6 +9,8 @@ alias wd='cd ~/workspace'
 alias credo='mix credo list'
 alias credos='mix credo list --strict'
 
+alias ectos='mix ecto.drop && mix ecto.create && mix ecto.migrate'
+
 alias tnsl='tmux new -s Dws_LW'
 alias tasl='tmux a -t Dws_LW'
 alias trvm='tmux -L $(date +%s) new -s Dws'

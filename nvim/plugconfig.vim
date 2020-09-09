@@ -125,8 +125,6 @@ autocmd FileType conf let b:autoformat_autoindent=0
 " ======================
 " COC config
 " ======================
-" call coc#config('languageserver', {'elixir': {'command': g:elixirls.lsp, 'trace.server': 'verbose',  'filetypes': ['elixir', 'eelixir'] } })
-
 let g:coc_global_extensions = [ 'coc-elixir', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']
 
 " ======================

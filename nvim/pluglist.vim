@@ -64,7 +64,7 @@ Plug 'tpope/vim-fugitive' " just to get branch at status bar
 Plug 'altercation/vim-colors-solarized'
 
 " Support Elixir
-Plug 'elixir-lang/vim-elixir'
+Plug 'elixir-editors/vim-elixir'
 
 " TypeScript sintax
 Plug 'leafgarland/typescript-vim'
@@ -78,7 +78,6 @@ Plug 'chiel92/vim-autoformat'
 
 " Completation plugin
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()  } } " Code completation
-Plug 'JakeBecker/elixir-ls', { 'do': { -> g:elixirls.compile() } } " Language server for elixir
 
 Plug 'gcmt/taboo.vim'
 Plug 'jreybert/vimagit'

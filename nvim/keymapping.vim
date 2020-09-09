@@ -79,6 +79,7 @@ nmap <Leader>rv :TestVisit<CR>
 " Close buffer
 nmap <Leader>q :q<CR>
 nmap <Leader>w :w<CR>
+nmap <Leader>x :qa<CR>
 
 " Open Magit
 nnoremap <Leader>git :Magit<CR>

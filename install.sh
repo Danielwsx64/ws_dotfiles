@@ -56,6 +56,10 @@ function install_solarized(){
   "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized/install.sh"
 }
 
+function add_gnome_terminal_profile(){
+  bash -c  "$(wget -qO- https://git.io/vQgMr)"
+}
+
 function install_docker(){
   curl -fsSL test.docker.com | sh
   sudo usermod -aG docker $USER
@@ -158,11 +162,11 @@ function already_installed(){
   echo " $0 --reinstall"
 }
 
-function set_final_config(){
-  profile=$(gsettings get org.gnome.Terminal.ProfilesList default)
-  profile=${profile:1:-1}
-  gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile/" login-shell true
-}
+# function set_final_config(){
+#   profile=$(gsettings get org.gnome.Terminal.ProfilesList default)
+#   profile=${profile:1:-1}
+#   gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile/" login-shell true
+# }
 
 function install_dotfiles(){
   if check_previus_install; then
@@ -191,8 +195,11 @@ function install_dotfiles(){
   echo -e ' \n\n---- It´ll change your default shell to zsh'
   chsh -s $(which zsh)
 
-  echo -e ' \n\n---- It´ll make the last configs'
-  set_final_config
+  echo -e ' \n\n---- It´ll add terminal profile'
+  add_gnome_terminal_profile
+
+  # echo -e ' \n\n---- It´ll make the last configs'
+  # set_final_config
 }
 
 function script_help(){

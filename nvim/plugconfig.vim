@@ -40,15 +40,6 @@ let g:NERDTreeIndicatorMapCustom = {
       \ }
 
 " ======================
-" Solarized configuration
-" ======================
-
-syntax enable
-set background=dark
-colorscheme solarized
-
-
-" ======================
 " Syntastic configuration
 " ======================
 
@@ -73,10 +64,16 @@ let g:airline_solarized_bg='dark'
 " Theme configuration
 " ======================
 
-let g:solarized_termtrans=1
-set background=dark
-colorscheme solarized
 set guifont=FuraCode\ Nerd\ Font\ 12 " for devicons
+
+" ======================
+" Solarized configuration
+" ======================
+
+" let g:solarized_termtrans=1
+" syntax enable
+" set background=dark
+" colorscheme solarized
 
 " ======================
 " CtrlP configuration
@@ -131,3 +128,12 @@ let g:coc_global_extensions = [ 'coc-elixir', 'coc-tslint-plugin', 'coc-tsserver
 " Fix for endwise + COC
 " ======================
 let g:endwise_no_mappings = 1
+
+
+" ======================
+" Vim Visual Mult Cursor Config
+" ======================
+
+let g:VM_maps = {}
+let g:VM_maps["Add Cursor Down"]    = '<M-j>'   " new cursor down
+let g:VM_maps["Add Cursor Up"]      = '<M-k>'   " new cursor up

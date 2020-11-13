@@ -53,7 +53,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
 
 " Multiple cursors
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 
 " Status bar
 Plug 'vim-airline/vim-airline'
@@ -61,7 +61,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive' " just to get branch at status bar
 
 " Color theme
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 
 " Support Elixir
 Plug 'elixir-editors/vim-elixir'

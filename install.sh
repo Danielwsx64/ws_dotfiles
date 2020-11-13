@@ -10,18 +10,19 @@ DEPENDENCES_PACKS=("curl" "git")
 
 # Packages to install
 DEB_PACKS=( "apt-transport-https" "ca-certificates" "software-properties-common"
-"dconf-cli" "silversearcher-ag" "vim-gnome" "zsh" "tmux" "automake"
-"autoconf" "libreadline-dev" "libncurses-dev" "libssl-dev" "xclip"
-"libyaml-dev" "libxslt-dev" "libffi-dev" "libtool" "unixodbc-dev")
+  "dconf-cli" "silversearcher-ag" "vim-gnome" "zsh" "tmux" "automake"
+  "autoconf" "libreadline-dev" "libncurses-dev" "libssl-dev" "xclip"
+  "libyaml-dev" "libxslt-dev" "libffi-dev" "libtool" "unixodbc-dev")
 
 # Custom apps to Install (without package management or custom configs)
-CUSTOM_APPS=("install_solarized" "install_zsh_syntax_highlighting"
-"install_docker" "install_docker_compose" "install_asdf"
-"install_fzf" "install_tmux_plugin")
+# "install_solarized"
+CUSTOM_APPS=("install_zsh_syntax_highlighting"
+  "install_docker" "install_docker_compose" "install_asdf"
+  "install_fzf" "install_tmux_plugin")
 
 # List of files to link
 FILES_LINK=("aliases" "aliases.local" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc"
-"bin" "vim" "git/*")
+  "bin" "vim" "git/*")
 
 # Dotfiles folder name
 WS_FOLDER='ws_dotfiles'

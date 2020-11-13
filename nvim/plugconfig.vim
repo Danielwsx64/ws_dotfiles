@@ -63,7 +63,16 @@ let g:airline_solarized_bg='dark'
 " ======================
 " Theme configuration
 " ======================
-
+colorscheme industry
+hi Search ctermbg=236 ctermfg=12
+hi PreProc ctermfg=174
+hi Special ctermfg=223
+hi ColorColumn ctermbg=236
+hi Tabline cterm=NONE
+hi! link StatusLine Tabline
+if has('patch-8.0.0616') || has('nvim')
+  hi Normal ctermbg=235
+endif
 set guifont=FuraCode\ Nerd\ Font\ 12 " for devicons
 
 " ======================
@@ -134,6 +143,7 @@ let g:endwise_no_mappings = 1
 " Vim Visual Mult Cursor Config
 " ======================
 
+let g:VM_theme            = 'iceblue'
 let g:VM_maps = {}
 let g:VM_maps["Add Cursor Down"]    = '<M-j>'   " new cursor down
 let g:VM_maps["Add Cursor Up"]      = '<M-k>'   " new cursor up

@@ -57,22 +57,27 @@ let g:syntastic_check_on_wq = 0
 " ======================
 
 let g:airline_powerline_fonts=1
-let g:airline_theme='solarized_flood'
-let g:airline_solarized_bg='dark'
+" let g:airline_theme='solarized_flood'
+" let g:airline_solarized_bg='dark'
 
 " ======================
 " Theme configuration
 " ======================
-colorscheme industry
-hi Search ctermbg=236 ctermfg=12
-hi PreProc ctermfg=174
-hi Special ctermfg=223
-hi ColorColumn ctermbg=236
-hi Tabline cterm=NONE
-hi! link StatusLine Tabline
-if has('patch-8.0.0616') || has('nvim')
-  hi Normal ctermbg=235
-endif
+colorscheme night-owl
+hi Pmenu ctermbg=236 ctermfg=white
+hi PMenuSel ctermbg=26 ctermfg=white
+
+" hi Tabline cterm=NONE
+" hi! link StatusLine Tabline
+" hi Search ctermbg=236 ctermfg=12
+" hi PreProc ctermfg=174
+" hi Special ctermfg=223
+
+" if has('patch-8.0.0616') || has('nvim')
+"   hi Normal ctermbg=235
+"   hi ColorColumn ctermbg=236
+" endif
+
 set guifont=FuraCode\ Nerd\ Font\ 12 " for devicons
 
 " ======================

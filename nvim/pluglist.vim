@@ -61,7 +61,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive' " just to get branch at status bar
 
 " Color theme
-" Plug 'altercation/vim-colors-solarized'
+Plug 'haishanh/night-owl.vim'
 
 " Support Elixir
 Plug 'elixir-editors/vim-elixir'

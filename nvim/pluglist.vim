@@ -44,7 +44,11 @@ Plug 'tomtom/tcomment_vim'
 " Plug 'tpope/vim-sensible'
 
 " Use ag in vim
-Plug 'rking/ag.vim'
+" Plug 'rking/ag.vim'
+Plug 'mileszs/ack.vim'
+
+" Replace files
+Plug 'skwp/greplace.vim'
 
 " Git diffs
 Plug 'airblade/vim-gitgutter'

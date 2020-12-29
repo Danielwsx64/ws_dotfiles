@@ -55,8 +55,8 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 "grep the current word using ag
-nnoremap <silent> ag :Ag <cword><CR>
-vnoremap <silent> ag y:Ag <C-R>"<CR>
+nnoremap <silent> <Leader>ag :Ack!<Space>
+vnoremap <silent> <Leader>ag y:Ack! <C-R>"<CR>
 
 " multiple cursor mapping
 let g:multi_cursor_use_default_mapping = 0

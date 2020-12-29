@@ -152,3 +152,21 @@ let g:VM_theme            = 'iceblue'
 let g:VM_maps = {}
 let g:VM_maps["Add Cursor Down"]    = '<M-j>'   " new cursor down
 let g:VM_maps["Add Cursor Up"]      = '<M-k>'   " new cursor up
+
+" ======================
+" ACK configuration
+" ======================
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+cnoreabbrev Ack Ack!
+
+" ======================
+" Greplace configuration
+" ======================
+
+set grepprg=ag
+
+let g:grep_cmd_opts = '--line-numbers --noheading'

@@ -48,7 +48,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'mileszs/ack.vim'
 
 " Replace files
-Plug 'skwp/greplace.vim'
+Plug 'Danielwsx64/greplace'
 
 " Git diffs
 Plug 'airblade/vim-gitgutter'

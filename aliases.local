@@ -10,6 +10,7 @@ alias credo='mix credo list'
 alias credos='mix credo list --strict'
 
 alias ectos='mix ecto.drop && mix ecto.create && mix ecto.migrate'
+alias ectos_test='MIX_ENV=test mix ecto.drop && MIX_ENV=test mix ecto.create && MIX_ENV=test mix ecto.migrate'
 
 alias tnsl='tmux new -s Dws_LW'
 alias tasl='tmux a -t Dws_LW'

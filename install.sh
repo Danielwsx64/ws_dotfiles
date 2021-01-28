@@ -1,28 +1,25 @@
 #!/bin/bash
 
-# sudo apt-get install fonts-powerline
-# sudo add-apt-repository ppa:neovim-ppa/stable
 # Custom repositories
-CUSTOM_REPOSITORIES=("ppa:pi-rho/dev")
+CUSTOM_REPOSITORIES=("ppa:pi-rho/dev" "ppa:neovim-ppa/stable")
 
 # Dependences Packs
 DEPENDENCES_PACKS=("curl" "git")
 
 # Packages to install
 DEB_PACKS=( "apt-transport-https" "ca-certificates" "software-properties-common"
-  "dconf-cli" "silversearcher-ag" "vim-gnome" "zsh" "tmux" "automake"
-  "autoconf" "libreadline-dev" "libncurses-dev" "libssl-dev" "xclip"
-  "libyaml-dev" "libxslt-dev" "libffi-dev" "libtool" "unixodbc-dev")
+  "dconf-cli" "silversearcher-ag" "neovim" "zsh" "tmux" "automake" "autoconf"
+  "libreadline-dev" "libncurses-dev" "libssl-dev" "xclip" "libyaml-dev"
+  "libxslt-dev" "libffi-dev" "libtool" "unixodbc-dev" "fonts-powerline"
+  "python3-pip")
 
 # Custom apps to Install (without package management or custom configs)
-# "install_solarized"
-CUSTOM_APPS=("install_zsh_syntax_highlighting"
-  "install_docker" "install_docker_compose" "install_asdf"
-  "install_fzf" "install_tmux_plugin")
+CUSTOM_APPS=("install_zsh_syntax_highlighting" "install_docker"
+  "install_docker_compose" "install_asdf" "install_fzf" "install_tmux_plugin"
+  "nvim_python")
 
 # List of files to link
-FILES_LINK=("aliases" "aliases.local" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc"
-  "bin" "vim" "git/*")
+FILES_LINK=("aliases" "aliases.local" "tmux.conf" "vimrc" "zsh" "zshenv" "zshrc" "bin" "vim" "git/*")
 
 # Dotfiles folder name
 WS_FOLDER='ws_dotfiles'
@@ -30,6 +27,10 @@ WS_FOLDER='ws_dotfiles'
 # ---------------------------------------
 # Custom install functions
 # ---------------------------------------
+
+function nvim_python(){
+  python3 -m pip install pynvim
+}
 
 function install_tmux_plugin(){
   git clone https://github.com/tmux-plugins/tpm $HOME/tmux/plugins/tpm
@@ -50,12 +51,6 @@ function install_fzf(){
   ~/.fzf/install
 }
 
-function install_solarized(){
-  mkdir -p "$HOME/.$WS_FOLDER"
-  git clone https://github.com/Anthony25/gnome-terminal-colors-solarized.git "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized"
-  "$HOME/.$WS_FOLDER/gnome-terminal-colors-solarized/install.sh"
-}
-
 function add_gnome_terminal_profile(){
   bash -c  "$(wget -qO- https://git.io/vQgMr)"
 }
@@ -66,7 +61,7 @@ function install_docker(){
 }
 
 function install_docker_compose(){
-  sudo curl -L https://github.com/docker/compose/releases/download/1.25.4/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+  sudo curl -L https://github.com/docker/compose/releases/download/1.28.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
   sudo chmod +x /usr/local/bin/docker-compose
 }
 # ------------ End of custom install functions
@@ -151,7 +146,7 @@ function install_fonts(){
 }
 
 function install_vim_plugins(){
-  vim -N "+set hidden" "+syntax on" +PlugInstall +qall
+  nvim -N "+set hidden" "+syntax on" +PlugInstall +qall
 }
 
 function already_installed(){
@@ -162,11 +157,11 @@ function already_installed(){
   echo " $0 --reinstall"
 }
 
-# function set_final_config(){
-#   profile=$(gsettings get org.gnome.Terminal.ProfilesList default)
-#   profile=${profile:1:-1}
-#   gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile/" login-shell true
-# }
+function terminal_profile(){
+  profile=$(gsettings get org.gnome.Terminal.ProfilesList default)
+  profile=${profile:1:-1}
+  gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$profile/" login-shell true
+}
 
 function install_dotfiles(){
   if check_previus_install; then
@@ -195,11 +190,11 @@ function install_dotfiles(){
   echo -e ' \n\n---- It´ll change your default shell to zsh'
   chsh -s $(which zsh)
 
-  echo -e ' \n\n---- It´ll add terminal profile'
-  add_gnome_terminal_profile
+  echo -e ' \n\n---- It´ll configure terminal profile'
+  terminal_profile
 
-  # echo -e ' \n\n---- It´ll make the last configs'
-  # set_final_config
+  echo -e ' \n\n---- It´ll add a new terminal profile, choose 108 to Monokai Soda'
+  add_gnome_terminal_profile
 }
 
 function script_help(){
@@ -239,3 +234,4 @@ case "$1" in
     script_help
     ;;
 esac
+

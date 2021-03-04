@@ -105,5 +105,10 @@ endfunction
 
 " Disable endwise auto mapping
 let g:endwise_no_mappings = 1
+
 " map enter to confirm autocompleat or apply endwise
 imap <expr> <cr> (pumvisible() ? "\<C-y>" : "\<cr>\<Plug>DiscretionaryEnd")
+
+" Scroll popup
+nnoremap <nowait><expr> <M-l> coc#float#has_scroll() ? coc#float#scroll(1) : "\<M-l>"
+nnoremap <nowait><expr> <M-h> coc#float#has_scroll() ? coc#float#scroll(0) : "\<M-h>"

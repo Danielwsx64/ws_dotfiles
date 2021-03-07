@@ -24,7 +24,6 @@ function! ToggleNerdTree()
   endif
 endfunction
 
-
 let NERDTreeShowHidden=1
 let g:NERDTreeIndicatorMapCustom = {
       \ "Modified"  : "✹",
@@ -67,39 +66,16 @@ colorscheme night-owl
 hi Pmenu ctermbg=236 ctermfg=white
 hi PMenuSel ctermbg=26 ctermfg=white
 
-" hi Tabline cterm=NONE
-" hi! link StatusLine Tabline
-" hi Search ctermbg=236 ctermfg=12
-" hi PreProc ctermfg=174
-" hi Special ctermfg=223
-
-" if has('patch-8.0.0616') || has('nvim')
-"   hi Normal ctermbg=235
-"   hi ColorColumn ctermbg=236
-" endif
-
 set guifont=FuraCode\ Nerd\ Font\ 12 " for devicons
-
-" ======================
-" Solarized configuration
-" ======================
-
-" let g:solarized_termtrans=1
-" syntax enable
-" set background=dark
-" colorscheme solarized
-
-" ======================
-" CtrlP configuration
-" ======================
-
-let g:ctrlp_switch_buffer = 'et'
-let g:ctrlp_use_caching = 0
-set wildignore+=*/node_modules/*,*/_build/*,*/deps/*,*/.elixir_ls/*
 
 " ======================
 " Tmux Stuff
 " ======================
+
+" Re-enable tmux_navigator.vim default bindings, minus <c-\>.
+" <c-\> conflicts with NERDTree "current file".
+" Don't allow any default key-mappings.
+let g:tmux_navigator_no_mappings = 1
 
 let is_tmux = $TMUX
 
@@ -127,41 +103,47 @@ au BufWrite * :Autoformat
 " fix broken ts formatter
 let g:formatdef_my_custom_ts = '"prettier --stdin-filepath ".expand("%:p").(&textwidth ? " --print-width ".&textwidth : "")." --tab-width=".shiftwidth()'
 let g:formatters_typescript = ['my_custom_ts']
-" let g:autoformat_verbosemode=1
 
 autocmd FileType yaml let b:autoformat_autoindent=0
 autocmd FileType conf let b:autoformat_autoindent=0
+autocmd FileType snippets let b:autoformat_autoindent=0
 
+" let g:autoformat_verbosemode=1
 
 " ======================
 " COC config
 " ======================
-let g:coc_global_extensions = [ 'coc-elixir', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']
+let g:coc_global_extensions = [ 'coc-elixir', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-fzf-preview', 'coc-yank', 'coc-git', 'coc-snippets']
+
+" ======================
+" AirLine config
+" ======================
+let g:airline#extensions#coc#enabled = 1
 
 " ======================
 " Fix for endwise + COC
 " ======================
+
+" Disable endwise auto mapping
 let g:endwise_no_mappings = 1
 
+" ======================
+" Fzf Preview Config
+" ======================
+let g:fzf_preview_lines_command = 'bat --color=always --plain --number' " Installed bat
+let g:fzf_preview_command = 'bat --color=always --plain {-1}' " Installed bat
+let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages -g \!"* *"' " Installed ripgrep
+let g:fzf_preview_directory_files_command = 'rg --files --hidden --follow --no-messages -g \!"* *"'
+let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never'
 
 " ======================
 " Vim Visual Mult Cursor Config
 " ======================
 
-let g:VM_theme            = 'iceblue'
-let g:VM_maps = {}
+let g:VM_theme                      = 'iceblue'
+let g:VM_maps                       = {}
 let g:VM_maps["Add Cursor Down"]    = '<M-j>'   " new cursor down
 let g:VM_maps["Add Cursor Up"]      = '<M-k>'   " new cursor up
-
-" ======================
-" ACK configuration
-" ======================
-
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
-cnoreabbrev Ack Ack!
 
 " ======================
 " Greplace configuration
@@ -170,3 +152,9 @@ cnoreabbrev Ack Ack!
 set grepprg=ag
 
 let g:grep_cmd_opts = '--line-numbers --noheading'
+
+" ======================
+" Git Gutter
+" ======================
+let g:gitgutter_map_keys = 0
+let g:gitgutter_preview_win_floating = 0

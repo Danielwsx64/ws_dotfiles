@@ -2,8 +2,8 @@ call functions#PlugLoad()
 call plug#begin('~/.config/nvim/plugged')
 
 " TMux stuff
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
 
 " NerdTree
@@ -12,18 +12,11 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
-" Fuzzy finder
-Plug 'ctrlpvim/ctrlp.vim'
-
 " Auto insert () {}
 Plug 'jiangmiao/auto-pairs'
 
 " Color for #rgb
 Plug 'lilydjwg/colorizer'
-
-" Snippets
-Plug 'SirVer/ultisnips' " snippets engine
-Plug 'honza/vim-snippets' " a package of snippets to varius languages like (ruby, elixir)
 
 " Syntax check
 Plug 'vim-syntastic/syntastic'
@@ -40,12 +33,8 @@ Plug 'tpope/vim-endwise'
 " Comments
 Plug 'tomtom/tcomment_vim'
 
-" Common vim configs
-" Plug 'tpope/vim-sensible'
-
-" Use ag in vim
-" Plug 'rking/ag.vim'
-Plug 'mileszs/ack.vim'
+" Snippets
+Plug 'honza/vim-snippets' " a package of snippets to varius languages like (ruby, elixir)
 
 " Replace files
 Plug 'Danielwsx64/greplace'
@@ -79,6 +68,9 @@ Plug 'janko-m/vim-test'
 
 " Formatting
 Plug 'chiel92/vim-autoformat'
+
+" Fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 " Completation plugin
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()  } } " Code completation

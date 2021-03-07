@@ -11,7 +11,7 @@ DEB_PACKS=( "apt-transport-https" "ca-certificates" "software-properties-common"
   "dconf-cli" "silversearcher-ag" "neovim" "zsh" "tmux" "automake" "autoconf"
   "libreadline-dev" "libncurses-dev" "libssl-dev" "xclip" "libyaml-dev"
   "libxslt-dev" "libffi-dev" "libtool" "unixodbc-dev" "fonts-powerline"
-  "python3-pip")
+  "python3-pip" "bat" "ripgrep")
 
 # Custom apps to Install (without package management or custom configs)
 CUSTOM_APPS=("install_zsh_syntax_highlighting" "install_docker"
@@ -27,6 +27,10 @@ WS_FOLDER='ws_dotfiles'
 # ---------------------------------------
 # Custom install functions
 # ---------------------------------------
+
+function universal_ctags(){
+  sudo snap install universal-ctags
+}
 
 function nvim_python(){
   python3 -m pip install pynvim

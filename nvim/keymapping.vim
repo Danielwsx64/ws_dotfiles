@@ -1,10 +1,6 @@
 " Leader
 let mapleader = " "
 
-" Copy Keys
-" nnoremap <c-y> "+y<CR>
-" vnoremap <c-y> "+y<CR>
-
 " Switch between the last two files
 nnoremap <Leader><Leader> <c-^>
 
@@ -18,83 +14,75 @@ nmap <silent> // :nohlsearch<CR>
 nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
 
-" Re-enable tmux_navigator.vim default bindings, minus <c-\>.
-" <c-\> conflicts with NERDTree "current file".
-" Don't allow any default key-mappings.
-let g:tmux_navigator_no_mappings = 1
-
 nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
 
 " Tabs
-nnoremap <silent> <S-t> :tabnew<CR>
-nnoremap <S-Tab> gt
-nnoremap L gt
-nnoremap H gT
+nnoremap <silent> <Leader>tn :tabnew<CR>
+nmap <silent> <Leader>tl gt
+nmap <silent> <Leader>th gT
+nmap <S-Tab> gt
 
 " zoom a vim pane, <C-w>= to re-balance
 nnoremap <Leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <Leader>= :wincmd =<cr>
 
+" Windows navigate
+nnoremap <silent> <Leader>wh :wincmd h<cr>
+nnoremap <silent> <Leader>wj :wincmd j<cr>
+nnoremap <silent> <Leader>wk :wincmd k<cr>
+nnoremap <silent> <Leader>wl :wincmd l<cr>
+nnoremap <silent> <Leader>ws :new<cr>
+nnoremap <silent> <Leader>wv :vnew<cr>
+
 " nerdtree
-nmap <silent> <leader>n :call ToggleNerdTree()<cr>
-"find the current file in nerdtree without needing to reload the drawer
-nmap <silent> <leader>y :NERDTreeFind<cr>
+nnoremap <silent> <leader>n :call ToggleNerdTree()<cr>
+nnoremap <silent> <leader>y :NERDTreeFind<cr>
 
-" Remapping CtrlP
-" let g:ctrlp_map = ' t'
-nnoremap <silent> <Leader>t :CtrlP<CR>
-nnoremap <silent> <Leader>p :CtrlP<CR>
-nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
-
-" Snippets keys
-let g:UltiSnipsExpandTrigger="sn"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-"grep the current word using ag
-nnoremap <silent> <Leader>ag :Ack!<Space>
-vnoremap <silent> <Leader>ag y:Ack! <C-R>"<CR>
-
-" multiple cursor mapping
-let g:multi_cursor_use_default_mapping = 0
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<C-m>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<C-m>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-b>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
+" " Snippets keys
+" let g:UltiSnipsExpandTrigger="sn"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " run tests
-nmap <Leader>rs :TestFile<CR>
-nmap <Leader>rn :TestNearest<CR>
-nmap <Leader>rl :TestLast<CR>
-nmap <Leader>ra :TestSuite<CR>
-nmap <Leader>rv :TestVisit<CR>
+nnoremap <Leader>rs :TestFile<CR>
+nnoremap <Leader>rn :TestNearest<CR>
+nnoremap <Leader>rl :TestLast<CR>
+nnoremap <Leader>ra :TestSuite<CR>
+nnoremap <Leader>rv :TestVisit<CR>
 
 " Close buffer
-nmap <Leader>q :q<CR>
-nmap <Leader>w :w<CR>
-nmap <Leader>x :qa<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
 
-" Open Magit
-nnoremap <Leader>git :Magit<CR>
+nnoremap <Leader>aw :wa<CR>
+
+nnoremap <Leader>ka :qa<CR>
+nnoremap <Leader>kf :q!<CR>
+nnoremap <Leader>kk :qa!<CR>
 
 " COC
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
 
+" Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
@@ -103,12 +91,93 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Disable endwise auto mapping
-let g:endwise_no_mappings = 1
-
 " map enter to confirm autocompleat or apply endwise
 imap <expr> <cr> (pumvisible() ? "\<C-y>" : "\<cr>\<Plug>DiscretionaryEnd")
 
 " Scroll popup
 nnoremap <nowait><expr> <M-l> coc#float#has_scroll() ? coc#float#scroll(1) : "\<M-l>"
 nnoremap <nowait><expr> <M-h> coc#float#has_scroll() ? coc#float#scroll(0) : "\<M-h>"
+
+" COC Fzf
+nmap <Leader>f [fzf-p]
+xmap <Leader>f [fzf-p]
+let g:fzf_preview_preview_key_bindings = 'alt-j:preview-page-down,alt-k:preview-page-up,?:toggle-preview'
+
+nnoremap <silent> <Leader>l     :<C-u>CocCommand fzf-preview.FromResources buffer project_mru project_mrw<CR>
+nnoremap <silent> <Leader>p     :<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>
+nnoremap <silent> <Leader>b     :<C-u>CocCommand fzf-preview.Buffers<CR>
+nnoremap <silent> <Leader>B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
+nnoremap <silent> <Leader>j :<C-u>CocCommand fzf-preview.Jumps<CR>
+
+nnoremap <silent> [fzf-p]h    :<C-u>CocCommand fzf-preview.CommandPalette<CR>
+nnoremap <silent> [fzf-p]gc    :<C-u>CocCommand fzf-preview.Changes<CR>
+nnoremap <silent> [fzf-p]/     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
+nnoremap <silent> [fzf-p]*     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
+nnoremap <silent> [fzf-p]n     :<C-u>CocCommand fzf-preview.BufferLines<CR>
+
+function! AddHunkToFixAndOpen()
+  silent! GitGutterQuickFix
+  silent! CocCommand fzf-preview.QuickFix
+endfunction
+
+nnoremap <silent> [fzf-p]f     :call AddHunkToFixAndOpen()<CR>
+
+nnoremap          [fzf-p]gr    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
+xnoremap          [fzf-p]gr    "sy:CocCommand   fzf-preview.ProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
+
+" COC Yank
+nnoremap <silent> <Leader>y  :<C-u>CocList -A --normal yank<cr>
+
+" GIT map
+nmap <Leader>g [git-p]
+xmap <Leader>g [git-p]
+
+function! GitGutterNextHunkCycle()
+  let line = line('.')
+  silent! GitGutterNextHunk
+  if line('.') == line
+    1
+    GitGutterNextHunk
+  endif
+endfunction
+
+" navigate chunks of current buffer
+nnoremap <silent> [git-p]n :call GitGutterNextHunkCycle()<CR>
+nmap <silent> [git-p]p <Plug>(GitGutterPrevHunk)
+
+function! ToggleGitGutterHighlights()
+  silent! GitGutterLineNrHighlightsToggle
+  silent! GitGutterLineHighlightsToggle
+endfunction
+
+nnoremap <silent> [git-p]h :call ToggleGitGutterHighlights()<CR>
+
+" navigate conflicts of current buffer
+nmap <silent> [git-p]c <Plug>(coc-git-nextconflict)
+" nmap <silent> [git-p]cp <Plug>(coc-git-prevconflict)
+
+function! PreviewHunkWindow()
+  silent! GitGutterPreviewHunk
+  wincmd P
+endfunction
+
+" show chunk diff at current position
+nmap <silent> [git-p]i <Plug>(coc-git-chunkinfo)
+nmap <silent> [git-p]I :call PreviewHunkWindow()<CR>
+
+" show commit contains current position
+nmap <silent> [git-p]b <Plug>(coc-git-commit)
+
+nnoremap <silent> [git-p]g  :<C-u>CocCommand git.browserOpen<cr>
+
+nmap <silent> [git-p]a <Plug>(GitGutterStageHunk)
+nmap <silent> [git-p]r <Plug>(GitGutterUndoHunk)
+
+nnoremap <silent> [git-p]f  :<C-u>CocCommand git.foldUnchanged<cr>
+
+" Fzf git
+nnoremap <silent> [git-p]s  :<C-u>CocCommand fzf-preview.GitStatus<CR>
+nnoremap <silent> [git-p]o  :<C-u>CocCommand fzf-preview.GitActions<CR>
+
+" Open Magit
+nnoremap <silent> [git-p]it :Magit<CR>

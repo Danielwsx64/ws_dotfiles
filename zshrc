@@ -85,6 +85,8 @@ TERM=screen-256color
 [[ -f ~/.secrets ]] && source ~/.secrets
 
 export ERL_AFLAGS="-kernel shell_history enabled -kernel shell_history_file_bytes 2097152"
+# bat teme
+export FZF_PREVIEW_PREVIEW_BAT_THEME='ansi'
 
 . $HOME/.asdf/asdf.sh
 

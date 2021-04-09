@@ -130,8 +130,8 @@ let g:endwise_no_mappings = 1
 " ======================
 " Fzf Preview Config
 " ======================
-let g:fzf_preview_lines_command = 'bat --color=always --plain --number' " Installed bat
-let g:fzf_preview_command = 'bat --color=always --plain {-1}' " Installed bat
+let g:fzf_preview_lines_command = 'batcat --color=always --plain --number' " Installed bat
+let g:fzf_preview_command = 'batcat --color=always --plain {-1}' " Installed bat
 let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages -g \!"* *"' " Installed ripgrep
 let g:fzf_preview_directory_files_command = 'rg --files --hidden --follow --no-messages -g \!"* *"'
 let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never'
@@ -158,3 +158,9 @@ let g:grep_cmd_opts = '--line-numbers --noheading'
 " ======================
 let g:gitgutter_map_keys = 0
 let g:gitgutter_preview_win_floating = 0
+
+" ======================
+" Git Terraform
+" ======================
+let g:terraform_align=1
+let g:terraform_fmt_on_save=0 " vim-autoformat now how to format

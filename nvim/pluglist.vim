@@ -69,6 +69,9 @@ Plug 'janko-m/vim-test'
 " Formatting
 Plug 'chiel92/vim-autoformat'
 
+" Terraform
+Plug 'hashivim/vim-terraform'
+
 " Fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 

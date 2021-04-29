@@ -113,7 +113,7 @@ autocmd FileType snippets let b:autoformat_autoindent=0
 " ======================
 " COC config
 " ======================
-let g:coc_global_extensions = [ 'coc-elixir', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-fzf-preview', 'coc-yank', 'coc-git', 'coc-snippets']
+let g:coc_global_extensions = [ 'coc-rls', 'coc-elixir', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-fzf-preview', 'coc-yank', 'coc-git', 'coc-snippets']
 
 " ======================
 " AirLine config
@@ -130,8 +130,8 @@ let g:endwise_no_mappings = 1
 " ======================
 " Fzf Preview Config
 " ======================
-let g:fzf_preview_lines_command = 'batcat --color=always --plain --number' " Installed bat
-let g:fzf_preview_command = 'batcat --color=always --plain {-1}' " Installed bat
+let g:fzf_preview_lines_command = 'bat --color=always --plain --number' " Installed bat
+let g:fzf_preview_command = 'bat --color=always --plain {-1}' " Installed bat
 let g:fzf_preview_filelist_command = 'rg --files --hidden --follow --no-messages -g \!"* *"' " Installed ripgrep
 let g:fzf_preview_directory_files_command = 'rg --files --hidden --follow --no-messages -g \!"* *"'
 let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never'

@@ -104,7 +104,7 @@ xmap <Leader>f [fzf-p]
 let g:fzf_preview_preview_key_bindings = 'alt-j:preview-page-down,alt-k:preview-page-up,?:toggle-preview'
 
 nnoremap <silent> <Leader>l     :<C-u>CocCommand fzf-preview.FromResources buffer project_mru project_mrw<CR>
-nnoremap <silent> <Leader>p     :<C-u>CocCommand fzf-preview.FromResources project_mru git<CR>
+nnoremap <silent> <Leader>p     :<C-u>CocCommand fzf-preview.ProjectFiles<CR>
 nnoremap <silent> <Leader>b     :<C-u>CocCommand fzf-preview.Buffers<CR>
 nnoremap <silent> <Leader>B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
 nnoremap <silent> <Leader>j :<C-u>CocCommand fzf-preview.Jumps<CR>

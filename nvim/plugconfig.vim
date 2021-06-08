@@ -104,9 +104,20 @@ au BufWrite * :Autoformat
 let g:formatdef_my_custom_ts = '"prettier --stdin-filepath ".expand("%:p").(&textwidth ? " --print-width ".&textwidth : "")." --tab-width=".shiftwidth()'
 let g:formatters_typescript = ['my_custom_ts']
 
-autocmd FileType yaml let b:autoformat_autoindent=0
-autocmd FileType conf let b:autoformat_autoindent=0
-autocmd FileType snippets let b:autoformat_autoindent=0
+function! g:ElixirConfigFileExistis()
+  return len(findfile(".formatter.exs", expand("%:p:h").";"))
+endfunction
+
+let s:elixir_with_config_file = '"mix format --dot-formatter " . findfile(".formatter.exs", expand("%:p:h").";") . " -"'
+let s:elixir_without_config_file = '"mix format -"'
+
+let g:formatdef_my_custom_elixir = "g:ElixirConfigFileExistis() ? (" . s:elixir_with_config_file . ") : (" . s:elixir_without_config_file . ")"
+
+let g:formatters_elixir = ['my_custom_elixir']
+
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
 
 " let g:autoformat_verbosemode=1
 
@@ -114,6 +125,9 @@ autocmd FileType snippets let b:autoformat_autoindent=0
 " COC config
 " ======================
 let g:coc_global_extensions = [ 'coc-rls', 'coc-elixir', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-fzf-preview', 'coc-yank', 'coc-git', 'coc-snippets']
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
 
 " ======================
 " AirLine config

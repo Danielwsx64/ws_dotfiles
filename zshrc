@@ -98,4 +98,6 @@ compinit
 
 source ~/.bin/tmuxinator.zsh
 
+export PATH="$PATH:/home/daniel/.asdf/installs/python/3.9.4/bin/"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

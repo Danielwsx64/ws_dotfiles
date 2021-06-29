@@ -170,11 +170,11 @@ nnoremap <silent> [git-leader]g  :<C-u>CocCommand git.browserOpen<cr>
 nmap <silent> [git-leader]a <Plug>(GitGutterStageHunk)
 nmap <silent> [git-leader]r <Plug>(GitGutterUndoHunk)
 
-nnoremap <silent> [git-p]f  :<C-u>CocCommand git.foldUnchanged<cr>
+nnoremap <silent> [git-leader]f  :<C-u>CocCommand git.foldUnchanged<cr>
 
 " Fzf git
-nnoremap <silent> [git-p]s  :<C-u>CocCommand fzf-preview.GitStatus<CR>
-nnoremap <silent> [git-p]o  :<C-u>CocCommand fzf-preview.GitActions<CR>
+nnoremap <silent> [git-leader]s  :<C-u>CocCommand fzf-preview.GitStatus<CR>
+nnoremap <silent> [git-leader]o  :<C-u>CocCommand fzf-preview.GitActions<CR>
 
 " Open Magit
-nnoremap <silent> [git-p]it :Magit<CR>
+nnoremap <silent> [git-leader]it :Magit<CR>

@@ -12,12 +12,13 @@ alias credos='mix credo list --strict'
 alias ectos='mix ecto.drop && mix ecto.create && mix ecto.migrate'
 alias ectos_test='MIX_ENV=test mix ecto.drop && MIX_ENV=test mix ecto.create && MIX_ENV=test mix ecto.migrate'
 
+alias server='iex -S mix phx.server'
+
 alias tnsl='tmux new -s Dws_LW'
 alias tasl='tmux a -t Dws_LW'
 alias trvm='tmux -L $(date +%s) new -s Dws'
 
 alias vim='nvim'
-
 alias jsprettier="npx prettier --config .prettierrc.json --write ./src/**/*.{js,json,md}"
 
 alias gdh='git diff HEAD'

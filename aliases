@@ -1,6 +1,6 @@
 # Based on Skwp's aliases
 # https://raw.githubusercontent.com/skwp/dotfiles/997d36bef991652dd436c076e57d8f00c49f4994/zsh/aliases.zsh
-wsdf=$HOME/.wc_dotfiles
+wsdf=$HOME/.ws_dotfiles
 
 # global
 alias -g ...='../..'
@@ -39,15 +39,9 @@ alias lag='la | grep'
 alias ae='vim $wsdf/aliases' #alias edit
 alias ar='source $wsdf/aliases'  #alias reload
 
-# vim using
-mvim --version > /dev/null 2>&1
-MACVIM_INSTALLED=$?
-if [ $MACVIM_INSTALLED -eq 0 ]; then
-  alias vim="mvim -v"
-fi
-
 # mimic vim functions
 alias :q='exit'
+alias q='exit'
 
 # vimrc editing
 alias ve='vim ~/.vimrc'

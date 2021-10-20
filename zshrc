@@ -98,7 +98,7 @@ compinit
 
 source ~/.bin/tmuxinator.zsh
 
-export PATH="$PATH:/home/daniel/.asdf/installs/python/3.9.4/bin/"
+export PATH="$PATH:/home/daniel/.local/bin/"
 export PATH="$PATH:/home/daniel/Android/Sdk/platform-tools/"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

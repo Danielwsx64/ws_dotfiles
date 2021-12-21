@@ -64,7 +64,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 
 " For tests
-Plug 'janko-m/vim-test'
+Plug 'vim-test/vim-test'
 
 " Formatting
 Plug 'chiel92/vim-autoformat'

@@ -1,7 +1,7 @@
 setopt promptsubst
 
 # load our own completion functions
-fpath=(~/.zsh/completion /usr/local/share/zsh/site-functions $fpath)
+fpath=(/home/daniel/.config/ham/completion/zsh/ ~/.zsh/completion /usr/local/share/zsh/site-functions $fpath)
 
 # completion
 autoload -U compinit
@@ -100,5 +100,6 @@ source ~/.bin/tmuxinator.zsh
 
 export PATH="$PATH:/home/daniel/.local/bin/"
 export PATH="$PATH:/home/daniel/Android/Sdk/platform-tools/"
+export PATH="$PATH:/home/daniel/.asdf/installs/rust/1.56.0/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

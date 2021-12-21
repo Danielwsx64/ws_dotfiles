@@ -83,15 +83,15 @@ if is_tmux != ""
   autocmd VimEnter * VtrAttachToPane
 endif
 
-if is_tmux != ""
-  let test#strategy = "vtr" " run commands using Vim Tmux Runner
-endif
-
 " ======================
 " Test Stuff
 " ======================
 
 let test#filename_modifier = ":p" " use absolute test path (fix elixir umbrela issue)
+
+if is_tmux != ""
+  let test#strategy = "vtr" " run commands using Vim Tmux Runner
+endif
 
 " ======================
 " AutoFormat Stuff

@@ -39,7 +39,7 @@ nnoremap <silent> <Leader>wv :vnew<cr>
 
 " nerdtree
 nnoremap <silent> <leader>n :call ToggleNerdTree()<cr>
-nnoremap <silent> <leader>y :NERDTreeFind<cr>
+nnoremap <silent> <leader>m :NERDTreeFind<cr>
 
 " run tests
 nnoremap <Leader>rs :TestFile<CR>
@@ -51,9 +51,7 @@ nnoremap <Leader>rv :TestVisit<CR>
 " Close buffer
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
-
 nnoremap <Leader>aw :wa<CR>
-
 nnoremap <Leader>ka :qa<CR>
 nnoremap <Leader>kf :q!<CR>
 nnoremap <Leader>kk :qa!<CR>
@@ -92,7 +90,6 @@ imap <expr> <cr> (pumvisible() ? "\<C-y>" : "\<cr>\<Plug>DiscretionaryEnd")
 " Scroll popup
 nnoremap <nowait><expr> <M-l> coc#float#has_scroll() ? coc#float#scroll(1) : "\<M-l>"
 nnoremap <nowait><expr> <M-h> coc#float#has_scroll() ? coc#float#scroll(0) : "\<M-h>"
-
 
 " COC Fzf
 nmap <Leader>f [fzf-leader]

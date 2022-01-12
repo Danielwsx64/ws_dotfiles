@@ -1,6 +1,10 @@
 call functions#PlugLoad()
 call plug#begin('~/.config/nvim/plugged')
 
+
+" Godot stuff
+Plug 'clktmr/vim-gdscript3'
+
 " TMux stuff
 Plug 'tmux-plugins/vim-tmux'
 Plug 'christoomey/vim-tmux-navigator'

@@ -91,7 +91,7 @@ imap <expr> <cr> (pumvisible() ? "\<C-y>" : "\<cr>\<Plug>DiscretionaryEnd")
 nnoremap <nowait><expr> <M-l> coc#float#has_scroll() ? coc#float#scroll(1) : "\<M-l>"
 nnoremap <nowait><expr> <M-h> coc#float#has_scroll() ? coc#float#scroll(0) : "\<M-h>"
 
-" COC Fzf
+" COC Fzf preview
 nmap <Leader>f [fzf-leader]
 xmap <Leader>f [fzf-leader]
 let g:fzf_preview_preview_key_bindings = 'alt-j:preview-page-down,alt-k:preview-page-up,?:toggle-preview'
@@ -102,11 +102,12 @@ nnoremap <silent> <Leader>b     :<C-u>CocCommand fzf-preview.Buffers<CR>
 nnoremap <silent> <Leader>B     :<C-u>CocCommand fzf-preview.AllBuffers<CR>
 nnoremap <silent> <Leader>j :<C-u>CocCommand fzf-preview.Jumps<CR>
 
-nnoremap <silent> [fzf-leader]h    :<C-u>CocCommand fzf-preview.CommandPalette<CR>
+nnoremap <silent> [fzf-leader]h     :<C-u>CocCommand fzf-preview.CommandPalette<CR>
 nnoremap <silent> [fzf-leader]gc    :<C-u>CocCommand fzf-preview.Changes<CR>
 nnoremap <silent> [fzf-leader]/     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'"<CR>
 nnoremap <silent> [fzf-leader]*     :<C-u>CocCommand fzf-preview.Lines --add-fzf-arg=--no-sort --add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
 nnoremap <silent> [fzf-leader]n     :<C-u>CocCommand fzf-preview.BufferLines<CR>
+nnoremap <silent> [fzf-leader]ag     :Ag<CR>
 
 function! AddHunkToFixAndOpen()
   silent! GitGutterQuickFix
@@ -114,10 +115,10 @@ function! AddHunkToFixAndOpen()
 endfunction
 
 " nnoremap <silent> [fzf-leader]f     :call AddHunkToFixAndOpen()<CR>
+" nnoremap [fzf-leader]gr    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
+" xnoremap [fzf-leader]gr    "sy:CocCommand   fzf-preview.ProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
 nnoremap <silent> [fzf-leader]f :call CocAction('format')<CR>
 
-nnoremap [fzf-leader]gr    :<C-u>CocCommand fzf-preview.ProjectGrep<Space>
-xnoremap [fzf-leader]gr    "sy:CocCommand   fzf-preview.ProjectGrep<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"
 
 " COC Yank
 nnoremap <silent> <Leader>y  :<C-u>CocList -A --normal yank<cr>

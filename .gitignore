@@ -3,3 +3,4 @@ gnome-terminal-colors-solarized/
 vim/backups
 
 nvim/plugged
+bin/*

@@ -78,6 +78,7 @@ Plug 'hashivim/vim-terraform'
 
 " Fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Completation plugin
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()  } } " Code completation

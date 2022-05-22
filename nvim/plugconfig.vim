@@ -87,7 +87,7 @@ endif
 " Test Stuff
 " ======================
 
-let test#filename_modifier = ":p" " use absolute test path (fix elixir umbrela issue)
+" let test#filename_modifier = ":p" " use absolute test path (fix elixir umbrela issue)
 
 if is_tmux != ""
   let test#strategy = "vtr" " run commands using Vim Tmux Runner

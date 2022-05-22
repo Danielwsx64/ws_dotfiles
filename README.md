@@ -34,3 +34,8 @@ sudo curl -L https://raw.githubusercontent.com/Danielwsx64/ws_dotfiles/master/in
 
 - space f / - find in file
 - space f \* - find in file
+
+### Vim utils
+
+Use :help to see documentation
+text-objects 'see about select, delete, change objcts (words and blocks like (, [, { )

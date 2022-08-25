@@ -7,6 +7,9 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 
+
+# rename current window
+alias tname='echo "${PWD##*/}" | xargs tmux rename-window'
 # PS
 alias psa="ps aux"
 alias psg="ps aux | grep "

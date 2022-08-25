@@ -96,7 +96,7 @@ endif
 " ======================
 " AutoFormat Stuff
 " ======================
-let g:python3_host_prog="/usr/bin/python3"
+let g:python3_host_prog="~/.asdf/shims/python"
 
 au BufWrite * :Autoformat
 
@@ -113,7 +113,7 @@ let g:autoformat_remove_trailing_spaces = 0
 " ======================
 " COC config
 " ======================
-let g:coc_global_extensions = [ 'coc-rls', 'coc-elixir', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-fzf-preview', 'coc-yank', 'coc-git', 'coc-snippets']
+let g:coc_global_extensions = [ 'coc-rls', 'coc-elixir', 'coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-fzf-preview', 'coc-yank', 'coc-git', 'coc-snippets', 'coc-lua']
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')

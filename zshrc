@@ -101,5 +101,6 @@ source ~/.bin/tmuxinator.zsh
 export PATH="$PATH:/home/daniel/.local/bin/"
 export PATH="$PATH:/home/daniel/Android/Sdk/platform-tools/"
 export PATH="$PATH:/home/daniel/.asdf/installs/rust/1.56.0/bin"
+export EDITOR=nvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

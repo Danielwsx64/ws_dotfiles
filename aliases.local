@@ -3,7 +3,7 @@
 wsdf=$HOME/.ws_dotfiles
 
 #Daniel
-alias ws='cd ~/WsLW'
+alias ws='cd ~/workspace'
 alias wd='cd ~/workspace'
 
 alias credo='mix credo list'

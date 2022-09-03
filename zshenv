@@ -7,7 +7,7 @@ export PATH="$HOME/.bin:/usr/local/sbin:$PATH"
 
 # Project files
 #
-export DANIEL_WORKSPACE="WsLW"
+export DANIEL_WORKSPACE="workspace"
 
 # Local config
 [[ -f ~/.zshenv.local ]] && source ~/.zshenv.local

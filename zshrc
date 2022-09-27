@@ -4,8 +4,8 @@ setopt promptsubst
 fpath=(/home/daniel/.config/ham/completion/zsh/ ~/.zsh/completion /usr/local/share/zsh/site-functions $fpath)
 
 # completion
-autoload -U compinit
-compinit -u
+# autoload -U compinit
+# compinit -u
 
 # load custom executable functions
 for function in ~/.zsh/functions/*; do
@@ -16,15 +16,36 @@ done
 autoload -U colors
 colors
 
-function chpwd() {
-  if [ -r $PWD/.env  ]; then
-    source $PWD/.env
-  fi
+# Hooks
+autoload -U add-zsh-hook
 
-  if [ -r $PWD/.env.local  ]; then
-    source $PWD/.env.local
-  fi
+function ch_tmux_window_to_pwd() {
+  echo "${PWD##*/}" | xargs tmux rename-window
 }
+
+add-zsh-hook chpwd ch_tmux_window_to_pwd
+
+function tmux_move_up() { tmux select-pane -U }
+function tmux_move_down() { tmux select-pane -D }
+function tmux_move_left() { tmux select-pane -L }
+function tmux_move_right() { tmux select-pane -R }
+function tmux_move_window_right() { tmux next-window }
+function tmux_move_window_left() { tmux previous-window }
+function tmux_move_last_windows() { tmux last-window }
+function tmux_zoom() { tmux resize-pane -Z }
+function tmux_splitv() { tmux splitw -v }
+function tmux_splith() { tmux splitw -h }
+
+zle -N tmux_move_up
+zle -N tmux_move_down
+zle -N tmux_move_left
+zle -N tmux_move_right
+zle -N tmux_move_window_right
+zle -N tmux_move_window_left
+zle -N tmux_move_last_windows
+zle -N tmux_zoom
+zle -N tmux_splitv
+zle -N tmux_splith
 
 DISABLE_AUTO_TITLE="true"
 
@@ -40,6 +61,7 @@ setopt hist_ignore_all_dups inc_append_history
 HISTFILE=~/.zhistory
 HISTSIZE=4096
 SAVEHIST=4096
+HISTORY_IGNORE="^(clear|ls|cd|fp)*"
 
 # awesome cd movements from zshkit
 setopt autocd autopushd pushdminus pushdsilent pushdtohome cdablevars
@@ -64,7 +86,28 @@ bindkey "^R" history-incremental-search-backward
 bindkey "^P" history-search-backward
 bindkey "^Y" accept-and-hold
 bindkey "^N" insert-last-word
-bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
+
+bindkey -s " wq" "exit^M"
+bindkey -s " qq" "exit^M"
+
+for keymap_mode in $( bindkey -l )
+do
+  if [[ "$keymap_mode" == '.safe' ]]; then
+  else
+    bindkey -M $keymap_mode ' wh' tmux_move_left
+    bindkey -M $keymap_mode ' wl' tmux_move_right
+    bindkey -M $keymap_mode ' wj' tmux_move_down
+    bindkey -M $keymap_mode ' wk' tmux_move_up
+    bindkey -M $keymap_mode ' wz' tmux_zoom
+    bindkey -M $keymap_mode ' wv' tmux_splith
+    bindkey -M $keymap_mode ' ws' tmux_splitv
+    bindkey -M $keymap_mode ' ttl' tmux_move_window_right
+    bindkey -M $keymap_mode ' tth' tmux_move_window_left
+    bindkey -M $keymap_mode ' ttb' tmux_move_last_windows
+  fi
+done
+
+
 
 set -o nobeep # no annoying beeps
 
@@ -92,6 +135,7 @@ export FZF_PREVIEW_PREVIEW_BAT_THEME='ansi'
 
 # append completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
+
 # initialise completions with ZSH's compinit
 autoload -Uz compinit
 compinit

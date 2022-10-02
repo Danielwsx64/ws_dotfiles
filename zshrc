@@ -128,8 +128,10 @@ TERM=screen-256color
 [[ -f ~/.secrets ]] && source ~/.secrets
 
 export ERL_AFLAGS="-kernel shell_history enabled -kernel shell_history_file_bytes 2097152"
+
 # bat teme
 export FZF_PREVIEW_PREVIEW_BAT_THEME='ansi'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
 . $HOME/.asdf/asdf.sh
 
@@ -143,8 +145,8 @@ compinit
 source ~/.bin/tmuxinator.zsh
 
 export PATH="$PATH:/home/daniel/.local/bin/"
-export PATH="$PATH:/home/daniel/Android/Sdk/platform-tools/"
-export PATH="$PATH:/home/daniel/.asdf/installs/rust/1.56.0/bin"
+# export PATH="$PATH:/home/daniel/Android/Sdk/platform-tools/"
+# export PATH="$PATH:/home/daniel/.asdf/installs/rust/1.56.0/bin"
 export EDITOR=nvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

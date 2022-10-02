@@ -11,7 +11,7 @@ fe() {
 
 fw() {
   local dir
-  namespace=workspace
+  namespace=$DANIEL_WORKSPACE
   dir=$(ls -d ~/$namespace/* | fzf +m)
   echo $namespace/$(basename $dir) > /tmp/current_project.tmp
   cd "$dir"
@@ -21,10 +21,25 @@ fw() {
 fp() {
   local dir
   namespace=$DANIEL_WORKSPACE
-  dir=$(ls -d ~/$namespace/* | fzf +m)
-  echo $namespace/$(basename $dir) > /tmp/current_project.tmp
-  cd "$dir"
+  project=$(ls -d1 ~/$namespace/* | xargs -n 1 basename | fzf +m)
+
+  project_dir=$namespace/$project
+
+  echo $project_dir > /tmp/current_project.tmp
+
+  cd ~/$project_dir
   ls --color -a
+}
+
+p(){
+  namespace=$DANIEL_WORKSPACE
+  if [ "$1" == "." ] ; then
+    cd $1
+    echo $namespace/$(basename $(pwd)) > /tmp/current_project.tmp
+  else
+    current=$(cat /tmp/current_project.tmp)
+    cd ~/$current
+  fi
 }
 
 ff() {
@@ -71,13 +86,3 @@ fco() {
     git checkout $(echo "$commit" | sed "s/ .*//")
 }
 
-p(){
-  namespace=workspace
-  if [ "$1" == "." ] ; then
-    cd $1
-    echo $namespace/$(basename $(pwd)) > /tmp/current_project.tmp
-  else
-    current=$(cat /tmp/current_project.tmp)
-    cd ~/$current
-  fi
-}

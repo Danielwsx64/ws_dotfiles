@@ -20,5 +20,7 @@ alias trvm='tmux -L $(date +%s) new -s Dws'
 
 alias vim='nvim'
 alias jsprettier="npx prettier --config .prettierrc.json --write ./src/**/*.{js,json,md}"
+alias finbits='cd ~/workspace/hermes && tat'
 
+alias gprune='git branch | grep -v main | xargs git branch -D && git remote prune origin'
 alias gdh='git diff HEAD'

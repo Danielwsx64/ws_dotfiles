@@ -20,8 +20,11 @@ colors
 autoload -U add-zsh-hook
 
 function ch_tmux_window_to_pwd() {
-  echo "${PWD##*/}" | xargs tmux rename-window
+  if [[ -v TMUX ]]; then
+    echo "${PWD##*/}" | xargs tmux rename-window
+  fi
 }
+
 
 add-zsh-hook chpwd ch_tmux_window_to_pwd
 
@@ -150,7 +153,7 @@ source ~/.bin/tmuxinator.zsh
 
 export PATH="$PATH:/home/daniel/.local/bin/"
 # export PATH="$PATH:/home/daniel/Android/Sdk/platform-tools/"
-# export PATH="$PATH:/home/daniel/.asdf/installs/rust/1.56.0/bin"
+export PATH="$PATH:/home/daniel/.asdf/installs/rust/1.59.0/bin"
 export EDITOR=nvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

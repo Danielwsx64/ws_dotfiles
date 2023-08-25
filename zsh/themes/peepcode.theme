@@ -47,7 +47,7 @@ git_prompt() {
 }
 
 PROMPT='
-%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )'
-PROMPT+=' %{$fg[cyan]%}%c%{$reset_color%} '
+%(?:%{$fg_bold[yellow]%}󰦺 :%{$fg_bold[red]%}󰊠 )'
+PROMPT+='%{$fg[cyan]%}%c%{$reset_color%} '
 
 RPROMPT='%{$fg[white]%} $(git_prompt)%{$reset_color%}'

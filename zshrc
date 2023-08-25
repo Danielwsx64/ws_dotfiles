@@ -25,7 +25,6 @@ function ch_tmux_window_to_pwd() {
   fi
 }
 
-
 add-zsh-hook chpwd ch_tmux_window_to_pwd
 
 function tmux_move_up() { tmux select-pane -U }

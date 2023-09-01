@@ -1,5 +1,7 @@
 setopt promptsubst
 
+export DANIEL_WORKSPACE='workspace'
+
 # load our own completion functions
 fpath=(/home/daniel/.config/ham/completion/zsh/ ~/.zsh/completion /usr/local/share/zsh/site-functions $fpath)
 
@@ -113,8 +115,6 @@ do
   fi
 done
 
-
-
 set -o nobeep # no annoying beeps
 
 # aliases
@@ -151,7 +151,6 @@ compinit
 source ~/.bin/tmuxinator.zsh
 
 export PATH="$PATH:/home/daniel/.local/bin/"
-# export PATH="$PATH:/home/daniel/Android/Sdk/platform-tools/"
 export PATH="$PATH:/home/daniel/.asdf/installs/rust/1.79.1/bin"
 export EDITOR=nvim
 

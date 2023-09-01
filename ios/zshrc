@@ -23,7 +23,6 @@ function ch_tmux_window_to_pwd() {
   fi
 }
 
-
 add-zsh-hook chpwd ch_tmux_window_to_pwd
 
 function tmux_move_up() { tmux select-pane -U }
@@ -53,7 +52,6 @@ DISABLE_AUTO_TITLE="true"
 function precmd () {
   printf "\033k${PWD##*/}\033\\"
 }
-
 
 # enable colored output from ls, etc
 export CLICOLOR=1
@@ -130,7 +128,6 @@ export ERL_AFLAGS="-kernel shell_history enabled -kernel shell_history_file_byte
 # bat teme
 export FZF_PREVIEW_PREVIEW_BAT_THEME='ansi'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-
 
 # ASDF scrpits / append completions to fpath
 . $HOME/.asdf/asdf.sh

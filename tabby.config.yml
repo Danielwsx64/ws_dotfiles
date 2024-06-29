@@ -1,0 +1,247 @@
+version: 7
+profiles: []
+groups: []
+configSync:
+  parts: {}
+hotkeys:
+  toggle-window: []
+  copy-current-path: []
+  ctrl-c:
+    - Ctrl-C
+  copy:
+    - Ctrl-Shift-C
+  paste:
+    - Ctrl-Shift-V
+    - Shift-Insert
+  select-all:
+    - Ctrl-Shift-A
+  clear: []
+  zoom-in:
+    - Ctrl-=
+    - Ctrl-Shift-=
+  zoom-out:
+    - Ctrl--
+    - Ctrl-Shift--
+  reset-zoom:
+    - Ctrl-0
+  home:
+    - Home
+  end:
+    - End
+  previous-word:
+    - Ctrl-Left
+  next-word:
+    - Ctrl-Right
+  delete-previous-word:
+    - Ctrl-Backspace
+  delete-line:
+    - Ctrl-Shift-Backspace
+  delete-next-word:
+    - Ctrl-Delete
+  search: []
+  pane-focus-all: []
+  focus-all-tabs: []
+  scroll-to-top: []
+  scroll-up: []
+  scroll-down: []
+  scroll-to-bottom: []
+  restart-telnet-session: []
+  restart-ssh-session: []
+  launch-winscp: []
+  settings-tab: {}
+  settings: []
+  serial: []
+  restart-serial-session: []
+  new-tab: []
+  new-window: []
+  profile: {}
+  profile-selectors: {}
+  toggle-fullscreen:
+    - F11
+  close-tab:
+    - Ctrl-W
+  reopen-tab: []
+  toggle-last-tab: []
+  rename-tab: []
+  next-tab: []
+  previous-tab: []
+  move-tab-left: []
+  move-tab-right: []
+  rearrange-panes: []
+  duplicate-tab: []
+  restart-tab: []
+  reconnect-tab: []
+  disconnect-tab: []
+  explode-tab: []
+  combine-tabs: []
+  tab-1: []
+  tab-2: []
+  tab-3: []
+  tab-4: []
+  tab-5: []
+  tab-6: []
+  tab-7: []
+  tab-8: []
+  tab-9: []
+  tab-10: []
+  tab-11: []
+  tab-12: []
+  tab-13: []
+  tab-14: []
+  tab-15: []
+  tab-16: []
+  tab-17: []
+  tab-18: []
+  tab-19: []
+  tab-20: []
+  split-right: []
+  split-bottom: []
+  split-left: []
+  split-top: []
+  pane-nav-right: []
+  pane-nav-down: []
+  pane-nav-up: []
+  pane-nav-left: []
+  pane-nav-previous: []
+  pane-nav-next: []
+  pane-nav-1: []
+  pane-nav-2: []
+  pane-nav-3: []
+  pane-nav-4: []
+  pane-nav-5: []
+  pane-nav-6: []
+  pane-nav-7: []
+  pane-nav-8: []
+  pane-nav-9: []
+  pane-maximize: []
+  pane-increase-vertical: []
+  pane-decrease-vertical: []
+  pane-increase-horizontal: []
+  pane-decrease-horizontal: []
+  close-pane: []
+  switch-profile: []
+  profile-selector: []
+  command-selector:
+    - Ctrl-Shift-P
+terminal:
+  searchOptions: {}
+  colorScheme:
+    name: Catppuccin Mocha
+    foreground: '#CDD6F4'
+    background: '#1E1E2E'
+    cursor: '#CDD6F4'
+    colors:
+      - '#45475A'
+      - '#F38BA8'
+      - '#A6E3A1'
+      - '#F9E2AF'
+      - '#89B4FA'
+      - '#F5C2E7'
+      - '#94E2D5'
+      - '#BAC2DE'
+      - '#585B70'
+      - '#F38BA8'
+      - '#A6E3A1'
+      - '#F9E2AF'
+      - '#89B4FA'
+      - '#F5C2E7'
+      - '#94E2D5'
+      - '#A6ADC8'
+  font: JetBrainsMonoNL Nerd Font Mono
+  customColorSchemes: []
+  lightColorScheme:
+    name: Tabby Default Light
+    foreground: '#4d4d4c'
+    background: '#ffffff'
+    cursor: '#4d4d4c'
+    colors:
+      - '#000000'
+      - '#c82829'
+      - '#718c00'
+      - '#eab700'
+      - '#4271ae'
+      - '#8959a8'
+      - '#3e999f'
+      - '#ffffff'
+      - '#000000'
+      - '#c82829'
+      - '#718c00'
+      - '#eab700'
+      - '#4271ae'
+      - '#8959a8'
+      - '#3e999f'
+      - '#ffffff'
+  fontSize: 18
+  ligatures: true
+  hideTabIndex: true
+  hideTabOptionsButton: true
+  warnOnMultilinePaste: false
+ssh: {}
+clickableLinks: {}
+accessibility: {}
+appearance:
+  tabsLocation: bottom
+  lastTabClosesWindow: true
+  spaciness: 0.8
+  dockScreen: 2
+  dockFill: 0.53
+  tabsInFullscreen: true
+  flexTabs: true
+hacks: {}
+providerBlacklist: []
+commandBlacklist: []
+profileDefaults:
+  ssh:
+    disableDynamicTitle: true
+profileBlacklist:
+  - socket:template
+  - local:usrbindash
+  - local:bindash
+  - local:usrbinbash
+  - local:binbash
+  - local:binrbash
+  - local:usrbinrbash
+  - serial:port-devttyS0
+  - serial:port-devttyS1
+  - serial:port-devttyS10
+  - serial:port-devttyS11
+  - serial:port-devttyS12
+  - serial:port-devttyS13
+  - serial:port-devttyS14
+  - serial:port-devttyS15
+  - serial:port-devttyS16
+  - serial:port-devttyS17
+  - serial:port-devttyS18
+  - serial:port-devttyS19
+  - serial:port-devttyS20
+  - serial:port-devttyS2
+  - serial:port-devttyS21
+  - serial:port-devttyS22
+  - serial:port-devttyS23
+  - serial:port-devttyS24
+  - serial:port-devttyS25
+  - serial:port-devttyS26
+  - serial:port-devttyS27
+  - serial:port-devttyS28
+  - serial:port-devttyS29
+  - serial:port-devttyS3
+  - serial:port-devttyS30
+  - serial:port-devttyS31
+  - serial:port-devttyS4
+  - serial:port-devttyS5
+  - serial:port-devttyS6
+  - serial:port-devttyS7
+  - serial:port-devttyS8
+  - serial:port-devttyS9
+  - serial:template
+  - local:binsh
+  - local:usrbinsh
+  - ssh:template
+  - telnet:template
+  - local:usrbintmux
+  - local:binzsh
+  - local:usrbinzsh
+recoverTabs: false
+enableAnalytics: false
+enableWelcomeTab: false
+pluginBlacklist: []

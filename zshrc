@@ -152,6 +152,8 @@ source ~/.bin/tmuxinator.zsh
 
 export PATH="$PATH:/home/daniel/.local/bin/"
 export PATH="$PATH:/home/daniel/.asdf/installs/rust/1.79.1/bin"
+export PATH="$PATH:/home/daniel/.asdf/installs/lua/5.4.4/luarocks/bin"
+
 export EDITOR=nvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

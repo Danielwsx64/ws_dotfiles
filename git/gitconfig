@@ -124,3 +124,6 @@
   enabled = true
 [include]
   path = ~/.gitconfig.local
+[user]
+	email = github@daniel.ws
+	name = Danielwsx64

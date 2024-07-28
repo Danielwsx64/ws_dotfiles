@@ -25,3 +25,5 @@ alias finbits='cd ~/workspace/hermes && tat'
 alias gprune='git branch | grep -v main | xargs git branch -D && git remote prune origin'
 alias gdh='git diff HEAD'
 alias vi='nvim'
+
+alias stop_docker='docker ps -qa | xargs docker stop'
